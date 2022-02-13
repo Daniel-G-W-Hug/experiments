@@ -13,6 +13,8 @@
 
 #include "mdspan/mdspan.hpp"
 
+#include "hd/hd_solver.hpp"
+
 #include <cstddef> // std::size_t
 
 #include "fmt/format.h"
@@ -24,6 +26,39 @@ using std::experimental::extents;
 using std::experimental::layout_left;
 using std::experimental::layout_right;
 using std::experimental::mdspan;
+
+void solve_system()
+{
+
+    // storage for matrix, rhs & permutation
+    std::array m_s{1., 2., 3., 0., 4., 1., 0., 0., 1.};
+    std::array rhs_s{1., 1., 1.};
+    std::array<int, 3> m_perm_s;
+
+    // setup the corresponding mdarray views onto the data
+    auto m = mdspan<double, extents<3, 3>>(m_s.data());
+    auto rhs = mdspan<double, extents<3>>(rhs_s.data());
+    auto m_perm = mdspan<int, extents<3>>(m_perm_s.data());
+
+    // LU decomposition of matrix
+    hd::lu_decomp(m, m_perm);
+
+    // solution by backsubstition of rhs => solution is returned in rhs
+    hd::lu_backsubs(m, m_perm, rhs);
+
+    for (std::size_t i = 0; i < m.extent(0); ++i)
+    {
+        for (std::size_t j = 0; j < m.extent(1); ++j)
+        {
+            fmt::print("m({},{}) == {}, ", i, j, m(i, j));
+        }
+        fmt::print("\n");
+    }
+
+    for (std::size_t i = 0; i < m.extent(0); ++i)
+        fmt::print("rhs({}) == {},", i, rhs(i));
+    fmt::print("\n");
+}
 
 void func(mdspan<int, extents<dynamic_extent, dynamic_extent>> s)
 {
@@ -71,4 +106,6 @@ int main()
     // fmt::print("m({},{}) == {}\n", i, j, m[i, j]);
 
     fmt::print("d2 = {}\n\n", d2);
+
+    solve_system();
 }
