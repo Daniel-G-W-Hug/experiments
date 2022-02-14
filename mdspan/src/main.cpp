@@ -13,6 +13,7 @@
 
 #include "mdspan/mdspan.hpp"
 
+#include "hd/hd_functions.hpp"
 #include "hd/hd_solver.hpp"
 
 #include <cstddef> // std::size_t
@@ -108,4 +109,17 @@ int main()
     fmt::print("d2 = {}\n\n", d2);
 
     solve_system();
+
+    for (int i = 0; i < 53; ++i)
+    {
+        fmt::print("fact({}) = {}\n", i, hd::fact(i));
+    }
+    fmt::print("\n");
+
+    for (int n = 0; n < 10; ++n)
+        for (int k = 0; k <= n; ++k)
+        {
+            fmt::print("bico({},{}) = {}\n", n, k, hd::bico(n, k));
+        }
+    fmt::print("\n");
 }
