@@ -15,6 +15,7 @@
 
 #include "hd/hd_functions.hpp"
 #include "hd/hd_solver.hpp"
+#include "hd/hd_stencil.hpp"
 
 #include <cstddef> // std::size_t
 
@@ -122,4 +123,24 @@ int main()
             fmt::print("bico({},{}) = {}\n", n, k, hd::bico(n, k));
         }
     fmt::print("\n");
+
+    std::vector<double> x0v{-1., 0., 1.};
+
+    std::vector<double> x1v{-1., 0., 1.};
+    std::vector<double> x2v{};
+    hd::stencil_t s(0.0, hd::stencil_lhs::f1, x0v, x1v, x2v);
+
+    // std::vector<double> x1v{};
+    // std::vector<double> x2v{-1., 0., 1.};
+    // hd::stencil_t s(0.0, hd::stencil_lhs::f2, x0v, x1v, x2v);
+
+    fmt::print("wf2 = {}\n", s.wf2);
+    fmt::print("x2v = {}\n\n", x2v);
+    fmt::print("wf1 = {}\n", s.wf1);
+    fmt::print("x1v = {}\n\n", x1v);
+    fmt::print("wf0 = {}\n", s.wf0);
+    fmt::print("x0v = {}\n\n", x0v);
+
+    fmt::print("order={}\n", s.order);
+    fmt::print("trunc_err={}\n", s.trunc_err);
 }
