@@ -383,10 +383,10 @@ int main(int argc, char* argv[])
     fmt::print(" cat_double is {}\n", cp->cat_double);
     fmt::print(" cat_string is {}\n", cp->cat_string);
 
-    TE* ap = new TE(*cp);
-    fmt::print("Address of ap = {}\n", fmt::ptr(ap));
-    fmt::print("{}", ap->make_noise());
-    fmt::print(" My id is {}.\n", ap->id());
+    // TE* ap = new TE(*cp);
+    // fmt::print("Address of ap = {}\n", fmt::ptr(ap));
+    // fmt::print("{}", ap->make_noise());
+    // fmt::print(" My id is {}.\n", ap->id());
     // fmt::print(" Cat extra() is {}\n", ap->extra());
     // fmt::print(" cat_data is {}\n", ap->cat_data());
 

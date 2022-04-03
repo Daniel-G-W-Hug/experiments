@@ -13,6 +13,14 @@
 
 #include "mdspan/mdspan.hpp"
 
+// make mdspan less verbose
+using std::experimental::dextents;
+using std::experimental::dynamic_extent;
+using std::experimental::extents;
+using std::experimental::layout_left;
+using std::experimental::layout_right;
+using std::experimental::mdspan;
+
 #include "hd/hd_functions.hpp"
 #include "hd/hd_solver.hpp"
 #include "hd/hd_stencil.hpp"
@@ -21,13 +29,6 @@
 
 #include "fmt/format.h"
 #include "fmt/ranges.h"
-
-// make mdspan less verbose
-using std::experimental::dynamic_extent;
-using std::experimental::extents;
-using std::experimental::layout_left;
-using std::experimental::layout_right;
-using std::experimental::mdspan;
 
 void solve_system()
 {
@@ -124,23 +125,44 @@ int main()
         }
     fmt::print("\n");
 
-    std::vector<double> x0v{-1., 0., 1.};
+    try
+    {
+        std::vector<double> x0v{-1., 0., 1.};
 
-    std::vector<double> x1v{-1., 0., 1.};
-    std::vector<double> x2v{};
-    hd::stencil_t s(0.0, hd::stencil_lhs::f1, x0v, x1v, x2v);
+        std::vector<double> x1v{-1., 0., 1.};
+        std::vector<double> x2v{};
+        hd::stencil_t s(0.0, hd::stencil_lhs::f1, x0v, x1v, x2v);
 
-    // std::vector<double> x1v{};
-    // std::vector<double> x2v{-1., 0., 1.};
-    // hd::stencil_t s(0.0, hd::stencil_lhs::f2, x0v, x1v, x2v);
+        // std::vector<double> x1v{};
+        // std::vector<double> x2v{-1., 0., 1.};
+        // hd::stencil_t s(0.0, hd::stencil_lhs::f2, x0v, x1v, x2v);
 
-    fmt::print("wf2 = {}\n", s.wf2);
-    fmt::print("x2v = {}\n\n", x2v);
-    fmt::print("wf1 = {}\n", s.wf1);
-    fmt::print("x1v = {}\n\n", x1v);
-    fmt::print("wf0 = {}\n", s.wf0);
-    fmt::print("x0v = {}\n\n", x0v);
+        fmt::print("wf2 = {}\n", s.wf2);
+        fmt::print("x2v = {}\n\n", x2v);
+        fmt::print("wf1 = {}\n", s.wf1);
+        fmt::print("x1v = {}\n\n", x1v);
+        fmt::print("wf0 = {}\n", s.wf0);
+        fmt::print("x0v = {}\n\n", x0v);
 
-    fmt::print("order={}\n", s.order);
-    fmt::print("trunc_err={}\n", s.trunc_err);
+        fmt::print("order={}\n", s.order);
+        fmt::print("trunc_err={}\n\n", s.trunc_err);
+
+        // fmt::print("wf2 = {}\n", s1.wf2);
+        // fmt::print("x2v = {}\n\n", x2v);
+        // fmt::print("wf1 = {}\n", s1.wf1);
+        // fmt::print("x1v = {}\n\n", x1v);
+        // fmt::print("wf0 = {}\n", s1.wf0);
+        // fmt::print("x0v = {}\n\n", x0v);
+
+        // fmt::print("order={}\n", s1.order);
+        // fmt::print("trunc_err={}\n\n", s.trunc_err);
+    }
+    catch (const hd::Solver_error& s)
+    {
+        std::cout << s.name;
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << e.what();
+    }
 }

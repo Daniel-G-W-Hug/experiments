@@ -120,14 +120,14 @@ std::vector<int> v2{4, 5, 6};
 struct pt2d
 {
     double x{0.0}, y{0.0};
-    pt2d() = default;
-    pt2d(double x_in, double y_in) :
-        x(x_in), y(y_in) {}
-    ~pt2d() = default;
-    pt2d(const pt2d& rhs) = default;
-    pt2d(pt2d&& rhs) = default;
-    pt2d& operator=(const pt2d& rhs) = default;
-    pt2d& operator=(pt2d&& rhs) = default;
+    // pt2d() = default;
+    // pt2d(double x_in, double y_in) :
+    //     x(x_in), y(y_in) {}
+    // ~pt2d() = default;
+    // pt2d(const pt2d& rhs) = default;
+    // pt2d(pt2d&& rhs) = default;
+    // pt2d& operator=(const pt2d& rhs) = default;
+    // pt2d& operator=(pt2d&& rhs) = default;
 };
 
 // noisy version of pt2d
@@ -172,7 +172,7 @@ struct fmt::formatter<pt2d>
     template <typename ParseContext>
     constexpr auto parse(ParseContext& ctx);
     template <typename FormatContext>
-    auto format(const pt2d& pt, FormatContext& ctx);
+    auto format(pt2d const& pt, FormatContext& ctx) const;
 };
 
 template <typename ParseContext>
@@ -182,10 +182,10 @@ constexpr auto fmt::formatter<pt2d>::parse(ParseContext& ctx)
 }
 
 template <typename FormatContext>
-auto fmt::formatter<pt2d>::format(const pt2d& pt, FormatContext& ctx)
+auto fmt::formatter<pt2d>::format(pt2d const& pt, FormatContext& ctx) const
 {
     // return fmt::format_to(ctx.out(), "{{{0}, {1}}}", pt.x, pt.y);
-    return fmt::format_to(ctx.out(), "({0}, {1})", pt.x, pt.y);
+    return fmt::format_to(ctx.out(), "({}, {})", pt.x, pt.y);
 }
 
 // formating for user defined types (pt2d_n)
@@ -195,7 +195,7 @@ struct fmt::formatter<pt2d_n>
     template <typename ParseContext>
     constexpr auto parse(ParseContext& ctx);
     template <typename FormatContext>
-    auto format(const pt2d_n& pt, FormatContext& ctx);
+    auto format(pt2d_n const& pt, FormatContext& ctx) const;
 };
 
 template <typename ParseContext>
@@ -205,14 +205,16 @@ constexpr auto fmt::formatter<pt2d_n>::parse(ParseContext& ctx)
 }
 
 template <typename FormatContext>
-auto fmt::formatter<pt2d_n>::format(const pt2d_n& pt, FormatContext& ctx)
+auto fmt::formatter<pt2d_n>::format(pt2d_n const& pt, FormatContext& ctx) const
 {
     // return fmt::format_to(ctx.out(), "{{{0}, {1}}}", pt.x, pt.y);
-    return fmt::format_to(ctx.out(), "({0}, {1})", pt.x, pt.y);
+    return fmt::format_to(ctx.out(), "({}, {})", pt.x, pt.y);
 }
 
 std::vector<pt2d> vp1{{1.0, 1.0}, {1.5, 2.0}};
 std::vector<pt2d> vp2{{2.0, 4.0}, {2.5, 6.0}};
+// std::vector<pt2d> vp1{pt2d{1.0, 1.0}, pt2d{1.5, 2.0}};
+// std::vector<pt2d> vp2{pt2d{2.0, 4.0}, pt2d{2.5, 6.0}};
 
 int main()
 {
@@ -228,6 +230,7 @@ int main()
     fmt::print(" p = {}\n", p);
 
     fmt::print(" vp1 = {}\n", fmt::join(vp1, ", "));
+    fmt::print(" vp2 = {}\n", fmt::join(vp2, ", "));
 
     std::copy(vp2.begin(), vp2.end(), std::back_inserter(vp1));
     fmt::print(" vp1 = {}\n", fmt::join(vp1, ", "));

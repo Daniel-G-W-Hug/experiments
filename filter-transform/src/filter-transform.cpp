@@ -1,9 +1,13 @@
-#include "range/v3/all.hpp"
+//#include "range/v3/all.hpp"
+
 #include <iostream>
+#include <ranges>
+#include <vector>
+
 //#include "fmt/format.h"
 //#include "fmt/ranges.h"
 
-using namespace ranges;
+// using namespace ranges;  // for range-v3
 
 int main()
 {
@@ -17,12 +21,12 @@ int main()
                  "isn't. This seems unexpected.\n\n";
 
     std::cout << "Sequence: v | filter | transform:\n";
-    auto rng1 = v | views::filter([](int i)
-                                  {
+    auto rng1 = v | std::ranges::views::filter([](int i)
+                                       {
                 std::cout << "filter: " << i << "\n";
                 return true; }) |
-                views::transform([](int i)
-                                 {
+                std::ranges::views::transform([](int i)
+                                      {
                 std::cout << "transform: " << i << "\n";
                 return i; });
     // std::cout << rng1 << "\n\n";
@@ -36,12 +40,12 @@ int main()
     std::cout << "Sequence: v | transform | filter:\n";
     // not functionally equivalent when not no-op/identity, but still useful for
     // checking sequence of generated calls
-    auto rng2 = v | views::transform([](int i)
-                                     {
+    auto rng2 = v | std::ranges::views::transform([](int i)
+                                          {
                 std::cout << "transform: " << i << "\n";
                 return i; }) |
-                views::filter([](int i)
-                              {
+                std::ranges::views::filter([](int i)
+                                   {
                 std::cout << "filter: " << i << "\n";
                 return true; });
     // std::cout << rng2 << "\n\n";
@@ -53,15 +57,14 @@ int main()
     std::cout << "]\n\n";
 
     std::cout << "Sequence: v | transform | transform:\n";
-    auto rng3 = v | views::transform([](int i)
-                                     {
+    auto rng3 = v | std::ranges::views::transform([](int i)
+                                          {
                 std::cout << "transform: " << i << "\n";
                 return i; }) |
-                views::transform([](int i)
-                                 {
+                std::ranges::views::transform([](int i)
+                                      {
                 std::cout << "transform: " << i << "\n";
-                return i; }) |
-                to<std::vector>;
+                return i; });
     std::cout << "[ ";
     for (auto const& e : rng3)
     {
@@ -72,15 +75,14 @@ int main()
     // container, but not directly for views
 
     std::cout << "Sequence: v | filter | filter:\n";
-    auto rng4 = v | views::filter([](int i)
-                                  {
+    auto rng4 = v | std::ranges::views::filter([](int i)
+                                       {
                 std::cout << "filter: " << i << "\n";
                 return true; }) |
-                views::filter([](int i)
-                              {
+                std::ranges::views::filter([](int i)
+                                   {
                 std::cout << "filter: " << i << "\n";
-                return true; }) |
-                to<std::vector>;
+                return true; });
     std::cout << "[ ";
     for (auto const& e : rng4)
     {
@@ -93,23 +95,28 @@ int main()
         << "\nUnrelated issue? (that however let to discovering the above):\n\n";
     std::cout << "Unexpected call sequence. Output mixed in between filter and "
                  "transform calls (lazy + impl. of operator<< ?):\n";
-    auto rng10 = v | views::filter([](int i)
-                                   {
+    auto rng10 = v | std::ranges::views::filter([](int i)
+                                        {
                  std::cout << "filter: " << i << "\n"; /*return i % 2 == 0;*/
                  return true; }) |
-                 views::transform([](int i)
-                                  {
+                 std::ranges::views::transform([](int i)
+                                       {
                  std::cout << "transform: " << i << "\n"; /* return i * 2;*/
                  return i; });
-    std::cout << rng10 << "\n\n";
+    std::cout << "[ ";
+    for (auto const& e : rng10)
+    {
+        std::cout << e << ", ";
+    }
+    std::cout << "]\n\n";
 
     std::cout << "This yields a more expected output sequence:\n";
-    auto rng11 = v | views::filter([](int i)
-                                   {
+    auto rng11 = v | std::ranges::views::filter([](int i)
+                                        {
                  std::cout << "filter: " << i << "\n"; /*return i % 2 == 0;*/
                  return true; }) |
-                 views::transform([](int i)
-                                  {
+                 std::ranges::views::transform([](int i)
+                                       {
                  std::cout << "transform: " << i << "\n"; /* return i * 2;*/
                  return i; });
     std::cout << "[ ";

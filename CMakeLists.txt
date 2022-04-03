@@ -26,19 +26,22 @@
 #]]
 #[[ hint: backet comment will not be formated by cmake-format]]
 
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.23)
 
 # to use gcc-11 and g++-11 instead of default c / c++ (must come before project
 # line)
 #[[
-# set(CMAKE_C_COMPILER "gcc-11")
-# set(CMAKE_CXX_COMPILER "g++-11")
+set(CMAKE_C_COMPILER "gcc-11")
+set(CMAKE_CXX_COMPILER "g++-11")
 # ]]
 # specific for MacOS
 #[[
-# set(CMAKE_XCODE_ATTRIBUTE_CC "gcc-11")
-# set(CMAKE_XCODE_ATTRIBUTE_CXX "g++-11")
+set(CMAKE_XCODE_ATTRIBUTE_CC "gcc-11")
+set(CMAKE_XCODE_ATTRIBUTE_CXX "g++-11")
 # ]]
+
+set(CMAKE_C_COMPILER "gcc-11")
+set(CMAKE_CXX_COMPILER "g++-11")
 
 #
 # for trial of new features, libs or system values"
@@ -78,7 +81,7 @@ if(CMAKE_BUILD_TYPE EQUAL "Debug")
   endif()
 endif()
 
-# incrementally add all subdirectories needed
+# incrementally add all subdirectories needed; examples work on all complilers
 add_subdirectory(hello)
 add_subdirectory(fmt)
 add_subdirectory(circular_buffer)
@@ -86,9 +89,26 @@ add_subdirectory(implementation_check)
 add_subdirectory(instrumented)
 add_subdirectory(raii)
 add_subdirectory(reference_wrapper)
-add_subdirectory(type_erasure)
-add_subdirectory(mdspan)
 add_subdirectory(forest)
-add_subdirectory(filter-transform)
-add_subdirectory(condition_var)
-add_subdirectory(vtk)
+
+# "filter_transform" currently does not work in clang++, but on MACOS on g++
+# only (ranges not implemented for clang++ in c++20)
+
+# add_subdirectory(filter-transform)
+
+# "mdspan" works on MACOS in clang++, but not in g++-11 (terminates with error)
+
+# add_subdirectory(mdspan)
+
+# "condition_var" does work in clang++ only with local jthread instance; does
+# not link with g++ (linker error)
+
+# add_subdirectory(condition_var)
+
+# "type_erasure" works on clang++, but not on g++-11 on MACOS (Linker error)
+
+# add_subdirectory(type_erasure)
+
+# "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
+
+# add_subdirectory(vtk)
