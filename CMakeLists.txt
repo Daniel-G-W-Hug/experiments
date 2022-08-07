@@ -81,6 +81,20 @@ FetchContent_MakeAvailable(fmt)
 #)
 #FetchContent_MakeAvailable(stlab)
 
+### make json Library available
+FetchContent_Declare(json
+  GIT_REPOSITORY git@github.com:nlohmann/json.git
+  GIT_TAG master
+)
+FetchContent_MakeAvailable(json)
+
+# ### make proxy library for unintrusive polymorphism available
+# FetchContent_Declare(msft_proxy
+#   GIT_REPOSITORY git@github.com:microsoft/proxy.git
+#   GIT_TAG main
+# )
+# FetchContent_MakeAvailable(msft_proxy)
+
 # set a default build type: Debug | RelWithDebInfo | Release | MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Debug")
@@ -123,3 +137,9 @@ add_subdirectory(type_erasure)
 
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
 #add_subdirectory(vtk)
+
+# json library from nlohmann 
+add_subdirectory(json)
+
+# proxy library for unintrusive polymorphism 
+add_subdirectory(proxy)
