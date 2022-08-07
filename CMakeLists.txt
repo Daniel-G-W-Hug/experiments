@@ -109,21 +109,17 @@ add_subdirectory(reference_wrapper)
 
 # "filter_transform" currently does not work in clang++, but on MACOS on g++
 # only (ranges not implemented for clang++ in c++20)
-
-# add_subdirectory(filter-transform)
+add_subdirectory(filter-transform)
 
 # "mdspan" works on MACOS in clang++, but not in g++-11 (terminates with error)
 add_subdirectory(mdspan_test)
 
 # "condition_var" does work in clang++ only with local jthread instance; does
 # not link with g++ (linker error)
-
-# add_subdirectory(condition_var)
+add_subdirectory(condition_var)
 
 # "type_erasure" works on clang++, but not on g++-11 on MACOS (Linker error)
-
 add_subdirectory(type_erasure)
 
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
-
-# add_subdirectory(vtk)
+#add_subdirectory(vtk)
