@@ -1,4 +1,5 @@
 #include <algorithm> // sort
+#include <iostream>
 #include <vector>
 
 #include "fmt/format.h"
@@ -45,6 +46,12 @@ int main()
                instrumented<int>::counts[instrumented_base::conversion_from_T]);
     fmt::print("Default conversion to T: {}\n",
                instrumented<int>::counts[instrumented_base::conversion_to_T]);
+
+    do
+    {
+        std::cout << '\n'
+                  << "Press ENTER to continue...";
+    } while (std::cin.get() != '\n');
 
     return 0;
 }

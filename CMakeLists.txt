@@ -40,8 +40,8 @@ set(CMAKE_XCODE_ATTRIBUTE_CC "gcc-11")
 set(CMAKE_XCODE_ATTRIBUTE_CXX "g++-11")
 # ]]
 
-set(CMAKE_C_COMPILER "gcc-11")
-set(CMAKE_CXX_COMPILER "g++-11")
+#set(CMAKE_C_COMPILER "gcc-11")
+#set(CMAKE_CXX_COMPILER "g++-11")
 
 #
 # for trial of new features, libs or system values"
@@ -50,6 +50,8 @@ project(
   experiments
   VERSION 0.1
   LANGUAGES CXX)
+
+include(FetchContent)
 
 # set(CMAKE_VERBOSE_MAKEFILE ON)  // alternative: make VERBOSE=1
 # add_definitions(-Dxxx)
@@ -62,8 +64,22 @@ project(
 # endif()
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+
+### make fmt available
+FetchContent_Declare(fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+  GIT_TAG master
+)
+FetchContent_MakeAvailable(fmt)
+
+### make stlab/libraries available
+#FetchContent_Declare(stlab
+#  GIT_REPOSITORY https://github.com/stlab/libraries.git
+#    GIT_TAG main
+#)
+#FetchContent_MakeAvailable(stlab)
 
 # set a default build type: Debug | RelWithDebInfo | Release | MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
@@ -83,13 +99,13 @@ endif()
 
 # incrementally add all subdirectories needed; examples work on all complilers
 add_subdirectory(hello)
-add_subdirectory(fmt)
-add_subdirectory(circular_buffer)
+add_subdirectory(fmt_test)
+add_subdirectory(circular_buffer)   ### boost must be installed on the system
 add_subdirectory(implementation_check)
 add_subdirectory(instrumented)
 add_subdirectory(raii)
 add_subdirectory(reference_wrapper)
-add_subdirectory(forest)
+#add_subdirectory(forest)   ### requires stlab (difficult to include)
 
 # "filter_transform" currently does not work in clang++, but on MACOS on g++
 # only (ranges not implemented for clang++ in c++20)
@@ -97,8 +113,7 @@ add_subdirectory(forest)
 # add_subdirectory(filter-transform)
 
 # "mdspan" works on MACOS in clang++, but not in g++-11 (terminates with error)
-
-# add_subdirectory(mdspan)
+add_subdirectory(mdspan_test)
 
 # "condition_var" does work in clang++ only with local jthread instance; does
 # not link with g++ (linker error)
@@ -107,7 +122,7 @@ add_subdirectory(forest)
 
 # "type_erasure" works on clang++, but not on g++-11 on MACOS (Linker error)
 
-# add_subdirectory(type_erasure)
+add_subdirectory(type_erasure)
 
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
 

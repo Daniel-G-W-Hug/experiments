@@ -10,7 +10,7 @@
 #include <thread>
 
 // version that uses local jthread instance, in case not yet available in <thread> in C++20 mode (e.g. clang++)
-#include "jthread/source/jthread.hpp"
+//#include "jthread/source/jthread.hpp"
 
 using namespace std::chrono_literals;
 

@@ -1,6 +1,7 @@
 #include "fmt/format.h"
 #include "fmt/ranges.h"
 
+#include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
@@ -246,9 +247,7 @@ class TypeErased // for polymorphic usage
     {
 
       public:
-
-        TE_Storage(T obj) :
-            m_obj{std::move(obj)} {}
+        TE_Storage(T obj) : m_obj{std::move(obj)} {}
 
         std::unique_ptr<TE_Interface> clone() const override
         {
@@ -260,7 +259,6 @@ class TypeErased // for polymorphic usage
         int id() const override { return m_obj.id(); }
 
       private:
-
         // here is the actual type to hold as type erased value
         T m_obj;
     };
@@ -269,19 +267,16 @@ class TypeErased // for polymorphic usage
     std::unique_ptr<TE_Interface> m_impl_ptr;
 
   public:
-
     // ctor from original object
     template <typename T>
-    TypeErased(T obj) :
-        m_impl_ptr{std::make_unique<TE_Storage<T>>(std::move(obj))}
+    TypeErased(T obj) : m_impl_ptr{std::make_unique<TE_Storage<T>>(std::move(obj))}
     {
     }
 
     // copy ctor and assignement
-    TypeErased(const TypeErased& other) :
-        m_impl_ptr{other.m_impl_ptr->clone()} {}
+    TypeErased(const TypeErased &other) : m_impl_ptr{other.m_impl_ptr->clone()} {}
 
-    TypeErased& operator=(const TypeErased& other)
+    TypeErased &operator=(const TypeErased &other)
     {
         m_impl_ptr = other.m_impl_ptr->clone();
         return *this;
@@ -289,7 +284,7 @@ class TypeErased // for polymorphic usage
 
     // return copy of orgininal object
     template <typename T>
-    auto clone(const T& obj) -> T
+    auto clone(const T &obj) -> T
     {
         return m_impl_ptr->clone();
     }
@@ -309,7 +304,7 @@ class TypeErased // for polymorphic usage
     }
 };
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 
     // fmt::print("Using classical inheritance:\n");
@@ -374,7 +369,7 @@ int main(int argc, char* argv[])
     fmt::print("Size of c0 = {}\n", sizeof(c0));
     fmt::print("Size of d0 = {}\n\n", sizeof(d0));
 
-    Cat* cp = new Cat;
+    Cat *cp = new Cat;
     fmt::print("Address of cp = {}\n", fmt::ptr(cp));
     fmt::print("{}", cp->make_noise());
     fmt::print(" My id is {}.\n", cp->id());
@@ -422,6 +417,12 @@ int main(int argc, char* argv[])
     //     fmt::print("{}", e.make_noise());
     //     fmt::print(" My id is {}.\n", e.id());
     // }
+
+    do
+    {
+        std::cout << '\n'
+                  << "Press ENTER to continue...";
+    } while (std::cin.get() != '\n');
 
     return 0;
 }

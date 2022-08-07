@@ -10,7 +10,7 @@ add_executable(${EXEC_NAME} ${SOURCES})
 
 target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
-target_include_directories(${EXEC_NAME} PRIVATE /Users/daniel/prg/cpp/include)
+#target_include_directories(${EXEC_NAME} PRIVATE /Users/daniel/prg/cpp/include)
+target_include_directories(${EXEC_NAME} PUBLIC C:/Users/danie/prg/cpp/include)
 
-find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt)

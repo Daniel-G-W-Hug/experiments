@@ -23,17 +23,15 @@ struct noisy_h
     T t;
     noisy_h() { h += "default-ctor "; }
     ~noisy_h() { h += "dtor "; }
-    noisy_h(const noisy_h& rhs) :
-        t(rhs.t) { h += "copy-ctor "; }
-    noisy_h(noisy_h&& rhs) :
-        t(std::move(rhs.t)) { h += "move-ctor "; }
-    auto operator=(const noisy_h& rhs)
+    noisy_h(const noisy_h &rhs) : t(rhs.t) { h += "copy-ctor "; }
+    noisy_h(noisy_h &&rhs) : t(std::move(rhs.t)) { h += "move-ctor "; }
+    auto operator=(const noisy_h &rhs)
     {
         h += "copy-assign ";
         t = rhs.t;
         return *this;
     }
-    auto operator=(noisy_h&& rhs)
+    auto operator=(noisy_h &&rhs)
     {
         h += "move-assign ";
         t = std::move(rhs.t);
@@ -48,17 +46,15 @@ struct noisy_p
     T t;
     noisy_p() { fmt::print("default-ctor\n"); }
     ~noisy_p() { fmt::print("dtor\n"); }
-    noisy_p(const noisy_p& rhs) :
-        t(rhs.t) { fmt::print("copy-ctor\n"); }
-    noisy_p(noisy_p&& rhs) :
-        t(std::move(rhs.t)) { fmt::print("move-ctor\n"); }
-    auto operator=(const noisy_p& rhs)
+    noisy_p(const noisy_p &rhs) : t(rhs.t) { fmt::print("copy-ctor\n"); }
+    noisy_p(noisy_p &&rhs) : t(std::move(rhs.t)) { fmt::print("move-ctor\n"); }
+    auto operator=(const noisy_p &rhs)
     {
         fmt::print("copy-assign\n");
         t = rhs.t;
         return *this;
     }
-    auto operator=(noisy_p&& rhs)
+    auto operator=(noisy_p &&rhs)
     {
         fmt::print("move-assign\n");
         t = std::move(rhs.t);
@@ -135,28 +131,25 @@ struct pt2d_n
 {
     double x{0.0}, y{0.0};
     pt2d_n() { fmt::print("default-ctor\n"); }
-    pt2d_n(double x_in, double y_in) :
-        x(x_in), y(y_in)
+    pt2d_n(double x_in, double y_in) : x(x_in), y(y_in)
     {
         fmt::print("Two arg ctor\n");
     }
     ~pt2d_n() { fmt::print("dtor\n"); }
 
-    pt2d_n(const pt2d_n& rhs) :
-        x(rhs.x), y(rhs.y) { fmt::print("copy-ctor\n"); }
-    pt2d_n(pt2d_n&& rhs) :
-        x(std::move(rhs.x)), y(std::move(rhs.y))
+    pt2d_n(const pt2d_n &rhs) : x(rhs.x), y(rhs.y) { fmt::print("copy-ctor\n"); }
+    pt2d_n(pt2d_n &&rhs) : x(std::move(rhs.x)), y(std::move(rhs.y))
     {
         fmt::print("move-ctor\n");
     }
-    auto operator=(const pt2d_n& rhs)
+    auto operator=(const pt2d_n &rhs)
     {
         fmt::print("copy-assign\n");
         x = rhs.x;
         y = rhs.y;
         return *this;
     }
-    auto operator=(pt2d_n&& rhs)
+    auto operator=(pt2d_n &&rhs)
     {
         fmt::print("move-assign\n");
         x = std::move(rhs.x);
@@ -170,19 +163,19 @@ template <>
 struct fmt::formatter<pt2d>
 {
     template <typename ParseContext>
-    constexpr auto parse(ParseContext& ctx);
+    constexpr auto parse(ParseContext &ctx);
     template <typename FormatContext>
-    auto format(pt2d const& pt, FormatContext& ctx) const;
+    auto format(pt2d const &pt, FormatContext &ctx) const;
 };
 
 template <typename ParseContext>
-constexpr auto fmt::formatter<pt2d>::parse(ParseContext& ctx)
+constexpr auto fmt::formatter<pt2d>::parse(ParseContext &ctx)
 {
     return ctx.begin();
 }
 
 template <typename FormatContext>
-auto fmt::formatter<pt2d>::format(pt2d const& pt, FormatContext& ctx) const
+auto fmt::formatter<pt2d>::format(pt2d const &pt, FormatContext &ctx) const
 {
     // return fmt::format_to(ctx.out(), "{{{0}, {1}}}", pt.x, pt.y);
     return fmt::format_to(ctx.out(), "({}, {})", pt.x, pt.y);
@@ -193,19 +186,19 @@ template <>
 struct fmt::formatter<pt2d_n>
 {
     template <typename ParseContext>
-    constexpr auto parse(ParseContext& ctx);
+    constexpr auto parse(ParseContext &ctx);
     template <typename FormatContext>
-    auto format(pt2d_n const& pt, FormatContext& ctx) const;
+    auto format(pt2d_n const &pt, FormatContext &ctx) const;
 };
 
 template <typename ParseContext>
-constexpr auto fmt::formatter<pt2d_n>::parse(ParseContext& ctx)
+constexpr auto fmt::formatter<pt2d_n>::parse(ParseContext &ctx)
 {
     return ctx.begin();
 }
 
 template <typename FormatContext>
-auto fmt::formatter<pt2d_n>::format(pt2d_n const& pt, FormatContext& ctx) const
+auto fmt::formatter<pt2d_n>::format(pt2d_n const &pt, FormatContext &ctx) const
 {
     // return fmt::format_to(ctx.out(), "{{{0}, {1}}}", pt.x, pt.y);
     return fmt::format_to(ctx.out(), "({}, {})", pt.x, pt.y);
@@ -312,6 +305,12 @@ int main()
     {
         fmt::print("fname{:0>4}\n", i);
     }
+
+    do
+    {
+        std::cout << '\n'
+                  << "Press ENTER to continue...";
+    } while (std::cin.get() != '\n');
 
     return 0;
 }

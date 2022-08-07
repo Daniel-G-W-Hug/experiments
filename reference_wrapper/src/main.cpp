@@ -1,5 +1,7 @@
 #include <functional>
+#include <iostream>
 #include <vector>
+
 
 #include "fmt/format.h"
 #include "fmt/ranges.h" // support printing of (nested) containers & tuples
@@ -8,7 +10,7 @@
 //
 // reference example is 3x3 sudoku with 3 rows, 3 cols
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     constexpr size_t total_size = 16;
     constexpr size_t region_size = 4;
@@ -44,6 +46,12 @@ int main(int argc, char* argv[])
     fmt::print("cell: {}\n", fmt::join(cell, ", "));
     fmt::print("row: {}\n", fmt::join(row, ", "));
     fmt::print("col: {}\n", fmt::join(col, ", "));
+
+    do
+    {
+        std::cout << '\n'
+                  << "Press ENTER to continue...";
+    } while (std::cin.get() != '\n');
 
     return 0;
 }

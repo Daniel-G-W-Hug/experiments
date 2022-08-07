@@ -1,10 +1,8 @@
 # give our executable a name
-set(EXEC_NAME raii)
+set(EXEC_NAME fmt_test)
 
 # Manually add the sources
 set(SOURCES src/main.cpp)
-
-# target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 add_executable(${EXEC_NAME} ${SOURCES})
 

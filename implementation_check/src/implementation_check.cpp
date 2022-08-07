@@ -19,12 +19,12 @@ using namespace std::chrono;
 template <typename T>
 struct BinaryForm
 {
-    BinaryForm(const T& v) : _bs(v) {}
+    BinaryForm(const T &v) : _bs(v) {}
     const std::bitset<sizeof(T) * CHAR_BIT> _bs;
 };
 
 template <typename T>
-inline std::ostream& operator<<(std::ostream& os, const BinaryForm<T> bf)
+inline std::ostream &operator<<(std::ostream &os, const BinaryForm<T> bf)
 {
     return os << bf._bs;
 }
@@ -34,7 +34,7 @@ void write_id()
     cout << "thread id of new thread = " << this_thread::get_id() << "\n\n";
 }
 
-string time_as_string(const system_clock::time_point& tp)
+string time_as_string(const system_clock::time_point &tp)
 {
     // convert to system time:
     time_t t = system_clock::to_time_t(tp);
@@ -193,9 +193,9 @@ int main()
     unsigned char uc1_s, uc1_r, uc2_s, uc2_r;
 
     uc1_s = static_cast<unsigned char>(c1);
-    uc1_r = reinterpret_cast<unsigned char&>(c1);
+    uc1_r = reinterpret_cast<unsigned char &>(c1);
     uc2_s = static_cast<unsigned char>(c2);
-    uc2_r = reinterpret_cast<unsigned char&>(c2);
+    uc2_r = reinterpret_cast<unsigned char &>(c2);
 
     cout << "static_cast<unsigned char>(c1)      : " << uc1_s
          << ", binary representation: " << BinaryForm{uc1_s} << "\n";
@@ -209,9 +209,9 @@ int main()
     unsigned short ui1_s, ui1_r, ui2_s, ui2_r;
 
     ui1_s = static_cast<unsigned short>(i1);
-    ui1_r = reinterpret_cast<unsigned short&>(i1);
+    ui1_r = reinterpret_cast<unsigned short &>(i1);
     ui2_s = static_cast<unsigned short>(i2);
-    ui2_r = reinterpret_cast<unsigned short&>(i2);
+    ui2_r = reinterpret_cast<unsigned short &>(i2);
 
     cout << "static_cast<unsigned short>(i1)      : " << ui1_s
          << ", binary representation: " << BinaryForm{ui1_s} << "\n";
@@ -228,6 +228,7 @@ int main()
     cout << "largest char:           " << int(numeric_limits<char>::max())
          << "\n\n";
 
+    /*
     cout << "printable characters in that range are:\n";
     for (int i = numeric_limits<char>::min(); i != numeric_limits<char>::max();
          ++i)
@@ -237,18 +238,23 @@ int main()
             cout << "i= " << i << ": " << char(i) << endl;
         }
     }
+    */
 
     cout << "\nsmallest unsigned char: "
          << int(numeric_limits<unsigned char>::min()) << "\n";
     cout << "largest unsigned char:  "
          << int(numeric_limits<unsigned char>::max()) << "\n\n";
 
-    //   for (int i = numeric_limits<unsigned char>::min();
-    //        i != numeric_limits<unsigned char>::max(); ++i) {
-    //     if (isprint(i)) {
-    //       cout << "i= " << i << ": " << (unsigned char)(i) << endl;
-    //     }
-    //   }
+    /*
+    for (int i = numeric_limits<unsigned char>::min();
+            i != numeric_limits<unsigned char>::max(); ++i)
+    {
+         if (isprint(i))
+         {
+           cout << "i= " << i << ": " << (unsigned char)(i) << endl;
+         }
+    }
+    */
 
     cout << "smallest bool:         " << numeric_limits<bool>::min() << endl;
     cout << "largest bool:          " << numeric_limits<bool>::max() << endl;
@@ -337,8 +343,11 @@ int main()
     thread t(write_id); // write id of thread t to stdout
     t.join();
 
-    cout << "\nenter character: ";
-    char ch;
-    cin >> ch;
+    do
+    {
+        std::cout << '\n'
+                  << "Press ENTER to continue...";
+    } while (std::cin.get() != '\n');
+
     return (0);
 }

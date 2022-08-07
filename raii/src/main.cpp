@@ -1,4 +1,5 @@
 #include <cstddef> // for size_t
+#include <iostream>
 
 #include "fmt/format.h"
 #include "fmt/ranges.h"
@@ -10,12 +11,10 @@ template <typename T>
 class DynamicArray
 {
     size_t m_size{0};
-    T* m_array{nullptr};
+    T *m_array{nullptr};
 
   public:
-
-    DynamicArray(size_t size) :
-        m_size{size}, m_array{size > 0 ? new T[size] : nullptr}
+    DynamicArray(size_t size) : m_size{size}, m_array{size > 0 ? new T[size] : nullptr}
     {
         // if (m_array != nullptr)
         // {
@@ -42,13 +41,13 @@ class DynamicArray
 
     T get(size_t idx) { return m_array[idx]; }
 
-    T& operator[](size_t idx)
+    T &operator[](size_t idx)
     {
         return m_array[idx];
     }
 };
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     fmt::print("\nStart RAII demo.\n\n");
 
@@ -66,6 +65,12 @@ int main(int argc, char* argv[])
     }
 
     fmt::print("\nEnd RAII demo.\n\n");
+
+    do
+    {
+        std::cout << '\n'
+                  << "Press ENTER to continue...";
+    } while (std::cin.get() != '\n');
 
     return 0;
 }
