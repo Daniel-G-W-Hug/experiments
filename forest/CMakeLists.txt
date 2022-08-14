@@ -15,4 +15,4 @@ target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../includ
 
 target_link_libraries(${EXEC_NAME} PRIVATE stlab::stlab)
 
-target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt)
+target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt-header-only)

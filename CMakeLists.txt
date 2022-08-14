@@ -28,20 +28,12 @@
 
 cmake_minimum_required(VERSION 3.23)
 
-# to use gcc-11 and g++-11 instead of default c / c++ (must come before project
+# to use gcc-12 and g++-12 instead of default c / c++ (must come before project
 # line)
 #[[
-set(CMAKE_C_COMPILER "gcc-11")
-set(CMAKE_CXX_COMPILER "g++-11")
-# ]]
-# specific for MacOS
-#[[
-set(CMAKE_XCODE_ATTRIBUTE_CC "gcc-11")
-set(CMAKE_XCODE_ATTRIBUTE_CXX "g++-11")
-# ]]
-
-#set(CMAKE_C_COMPILER "gcc-11")
-#set(CMAKE_CXX_COMPILER "g++-11")
+set(CMAKE_C_COMPILER "gcc-12")
+set(CMAKE_CXX_COMPILER "g++-12")
+#]]
 
 #
 # for trial of new features, libs or system values"
@@ -67,32 +59,27 @@ include(FetchContent)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
-### make fmt available
-FetchContent_Declare(fmt
+# make fmt available
+FetchContent_Declare(
+  fmt
   GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-  GIT_TAG master
-)
+  GIT_TAG master)
 FetchContent_MakeAvailable(fmt)
 
-### make stlab/libraries available
-#FetchContent_Declare(stlab
-#  GIT_REPOSITORY https://github.com/stlab/libraries.git
-#    GIT_TAG main
-#)
-#FetchContent_MakeAvailable(stlab)
+# make stlab/libraries available FetchContent_Declare(stlab GIT_REPOSITORY
+# https://github.com/stlab/libraries.git GIT_TAG main )
+# FetchContent_MakeAvailable(stlab)
 
-### make json Library available
-FetchContent_Declare(json
+# make json Library available
+FetchContent_Declare(
+  json
   GIT_REPOSITORY git@github.com:nlohmann/json.git
-  GIT_TAG master
-)
+  GIT_TAG master)
 FetchContent_MakeAvailable(json)
 
 # ### make proxy library for unintrusive polymorphism available
-# FetchContent_Declare(msft_proxy
-#   GIT_REPOSITORY git@github.com:microsoft/proxy.git
-#   GIT_TAG main
-# )
+# FetchContent_Declare(msft_proxy GIT_REPOSITORY
+# git@github.com:microsoft/proxy.git GIT_TAG main )
 # FetchContent_MakeAvailable(msft_proxy)
 
 # set a default build type: Debug | RelWithDebInfo | Release | MinSizeRel
@@ -114,32 +101,36 @@ endif()
 # incrementally add all subdirectories needed; examples work on all complilers
 add_subdirectory(hello)
 add_subdirectory(fmt_test)
-add_subdirectory(circular_buffer)   ### boost must be installed on the system
+add_subdirectory(circular_buffer) # boost must be installed on the system
 add_subdirectory(implementation_check)
 add_subdirectory(instrumented)
 add_subdirectory(raii)
-add_subdirectory(reference_wrapper)
-#add_subdirectory(forest)   ### requires stlab (difficult to include)
+
+# add_subdirectory(reference_wrapper)
+
+# add_subdirectory(forest)   ### requires stlab (difficult to include)
 
 # "filter_transform" currently does not work in clang++, but on MACOS on g++
 # only (ranges not implemented for clang++ in c++20)
-add_subdirectory(filter-transform)
 
-# "mdspan" works on MACOS in clang++, but not in g++-11 (terminates with error)
+# add_subdirectory(filter-transform)
+
+# "mdspan" works on MACOS in clang++, but not in g++-12 (terminates with error)
 add_subdirectory(mdspan_test)
 
 # "condition_var" does work in clang++ only with local jthread instance; does
 # not link with g++ (linker error)
-add_subdirectory(condition_var)
+
+# add_subdirectory(condition_var)
 
 # "type_erasure" works on clang++, but not on g++-11 on MACOS (Linker error)
 add_subdirectory(type_erasure)
 
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
-#add_subdirectory(vtk)
+# add_subdirectory(vtk)
 
-# json library from nlohmann 
+# json library from nlohmann
 add_subdirectory(json)
 
-# proxy library for unintrusive polymorphism 
+# proxy library for unintrusive polymorphism
 add_subdirectory(proxy)

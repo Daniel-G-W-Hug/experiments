@@ -16,4 +16,4 @@ target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../includ
 #target_include_directories(${EXEC_NAME} PRIVATE /Users/daniel/prg/cpp/include)
 target_include_directories(${EXEC_NAME} PUBLIC C:/Users/danie/prg/cpp/include)
 
-target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt)
+target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt-header-only)

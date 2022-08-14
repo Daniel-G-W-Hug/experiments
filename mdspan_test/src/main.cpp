@@ -25,8 +25,6 @@ using std::experimental::mdspan;
 #include "hd/hd_solver.hpp"
 #include "hd/hd_stencil.hpp"
 
-#include <cstddef> // std::size_t
-
 #include "fmt/format.h"
 #include "fmt/ranges.h"
 
@@ -41,9 +39,9 @@ void solve_system()
     std::array<int, 3> m_perm_s;
 
     // setup the corresponding mdarray views onto the data
-    auto m = mdspan<double, extents<size_t, 3, 3>>(m_s.data());
-    auto rhs = mdspan<double, extents<size_t, 3>>(rhs_s.data());
-    auto m_perm = mdspan<int, extents<size_t, 3>>(m_perm_s.data());
+    auto m = mdspan<double, extents<int, 3, 3>>(m_s.data());
+    auto rhs = mdspan<double, extents<int, 3>>(rhs_s.data());
+    auto m_perm = mdspan<int, extents<int, 3>>(m_perm_s.data());
 
     // LU decomposition of matrix
     hd::lu_decomp(m, m_perm);
@@ -51,29 +49,29 @@ void solve_system()
     // solution by backsubstition of rhs => solution is returned in rhs
     hd::lu_backsubs(m, m_perm, rhs);
 
-    for (std::size_t i = 0; i < m.extent(0); ++i)
+    for (int i = 0; i < m.extent(0); ++i)
     {
-        for (std::size_t j = 0; j < m.extent(1); ++j)
+        for (int j = 0; j < m.extent(1); ++j)
         {
             fmt::print("m({},{}) == {}, ", i, j, m(i, j));
         }
         fmt::print("\n");
     }
 
-    for (std::size_t i = 0; i < m.extent(0); ++i)
+    for (int i = 0; i < m.extent(0); ++i)
         fmt::print("rhs({}) == {},", i, rhs(i));
     fmt::print("\n");
 }
 
-void func(mdspan<int, dextents<size_t, 2>> s)
+void func(mdspan<int, dextents<int, 2>> s)
 {
 
     // change last element
     s(s.extent(0) - 1, s.extent(1) - 1) = 22;
     // s[s.extent(0) - 1, s.extent(1) - 1] = 22;
 
-    for (std::size_t i = 0; i < s.extent(0); ++i)
-        for (std::size_t j = 0; j < s.extent(1); ++j)
+    for (int i = 0; i < s.extent(0); ++i)
+        for (int j = 0; j < s.extent(1); ++j)
             fmt::print("s({},{}) == {}\n", i, j, s(i, j));
     // fmt::print("s({},{}) == {}\n", i, j, s[i, j]);
 }
@@ -84,7 +82,7 @@ int main()
     std::array d2{12, 13, 14};
 
     double buffer[3 * 4] = {1.0, 2.0, 3.0, 4.0, 6.0, 8.0, 10.0, 12.0, 24.0, 48.0, 72.0, 96.0};
-    auto fd = mdspan<double, extents<size_t, 3, 4>>(buffer);
+    auto fd = mdspan<double, extents<int, 3, 4>>(buffer);
 
     fmt::print("fd = {}\n\n", buffer);
 
@@ -94,8 +92,8 @@ int main()
     // mdspan m{d.data(), 2, 2};  // also ok, but only mapping part of data to mdspan
     // mdspan m{d.data(), 3, 4}; // error (source too small; uninitiallized memory used)!
 
-    for (std::size_t i = 0; i < m.extent(0); ++i)
-        for (std::size_t j = 0; j < m.extent(1); ++j)
+    for (int i = 0; i < m.extent(0); ++i)
+        for (int j = 0; j < m.extent(1); ++j)
             fmt::print("m({},{}) == {}\n", i, j, m(i, j));
     // fmt::print("m({},{}) == {}\n", i, j, m[i, j]);
 
@@ -105,8 +103,8 @@ int main()
 
     fmt::print("\n");
 
-    for (std::size_t i = 0; i < m.extent(0); ++i)
-        for (std::size_t j = 0; j < m.extent(1); ++j)
+    for (int i = 0; i < m.extent(0); ++i)
+        for (int j = 0; j < m.extent(1); ++j)
             fmt::print("m({},{}) == {}\n", i, j, m(i, j));
     // fmt::print("m({},{}) == {}\n", i, j, m[i, j]);
 
@@ -159,11 +157,11 @@ int main()
         // fmt::print("order={}\n", s1.order);
         // fmt::print("trunc_err={}\n\n", s.trunc_err);
     }
-    catch (hd::Solver_error const &s)
+    catch (hd::Solver_error const& s)
     {
         std::cout << s.name;
     }
-    catch (std::exception const &e)
+    catch (std::exception const& e)
     {
         std::cout << e.what();
     }
