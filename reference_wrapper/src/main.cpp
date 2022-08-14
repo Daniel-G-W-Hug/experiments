@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 
+#include "hd/hd_keypress.hpp"
 
 #include "fmt/format.h"
 #include "fmt/ranges.h" // support printing of (nested) containers & tuples
@@ -47,11 +48,7 @@ int main(int argc, char *argv[])
     fmt::print("row: {}\n", fmt::join(row, ", "));
     fmt::print("col: {}\n", fmt::join(col, ", "));
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

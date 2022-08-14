@@ -13,6 +13,8 @@
 #include <string>
 #include <thread>
 
+#include "hd/hd_keypress.hpp"
+
 using namespace std;
 using namespace std::chrono;
 
@@ -343,11 +345,7 @@ int main()
     thread t(write_id); // write id of thread t to stdout
     t.join();
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return (0);
 }

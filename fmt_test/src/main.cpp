@@ -9,6 +9,8 @@ using std::cout;
 #include <tuple>
 #include <vector>
 
+#include "hd/hd_keypress.hpp"
+
 #include "fmt/format.h"
 #include "fmt/ranges.h" // support printing of (nested) containers & tuples
 
@@ -306,11 +308,7 @@ int main()
         fmt::print("fname{:0>4}\n", i);
     }
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

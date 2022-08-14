@@ -5,11 +5,13 @@ set(EXEC_NAME hello)
 set(SOURCES src/main.cpp)
 # set(HEADERS "")
 
-# target_include_directories(${PROJECT_NAME} PRIVATE
-# ${CMAKE_SOURCE_DIR}/include)
-
 add_executable(${EXEC_NAME} ${SOURCES})
 # add_executable(${EXEC_NAME} ${SOURCES} ${HEADERS})
+
+# target link libraries have to be added AFTER add_executable or add_library!
+target_include_directories(${EXEC_NAME} PRIVATE include)
+target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../include)
 
 #[[
 # find_package(fmt CONFIG REQUIRED)

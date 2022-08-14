@@ -3,6 +3,8 @@
 #include <string>
 #include <vector>
 
+#include "hd/hd_keypress.hpp"
+
 #include <proxy/proxy.h>
 
 struct at : pro::dispatch<std::string(int)>
@@ -27,11 +29,7 @@ int main()
     demo_print(&container1); // print: hello\n
     demo_print(&container2); // print: world\n
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

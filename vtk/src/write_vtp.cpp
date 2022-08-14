@@ -12,6 +12,8 @@
 #include <string>
 #include <vector>
 
+#include "hd/hd_keypress.hpp"
+
 #define _USE_MATH_DEFINES
 #include <cmath>
 
@@ -20,7 +22,7 @@ struct point_3d
     double x, y, z;
 };
 
-void write_polyline(const std::string& fname, const std::vector<point_3d>& v)
+void write_polyline(const std::string &fname, const std::vector<point_3d> &v)
 {
     vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
 
@@ -97,6 +99,8 @@ int main()
         std::string fname = fmt::format("vtk/test{:04}.vtp", l);
         write_polyline(fname, v3d);
     }
+
+    hd::cmdl_wait_for_enter();
 
     return EXIT_SUCCESS;
 }

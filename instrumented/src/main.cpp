@@ -6,6 +6,8 @@
 #include "fmt/ranges.h"        // support printing of (nested) containers & tuples
 using namespace fmt::literals; // just to make the format literals visible
 
+#include "hd/hd_keypress.hpp"
+
 #include "instrumented.hpp"
 
 int main()
@@ -47,11 +49,7 @@ int main()
     fmt::print("Default conversion to T: {}\n",
                instrumented<int>::counts[instrumented_base::conversion_to_T]);
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

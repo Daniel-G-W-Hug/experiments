@@ -1,7 +1,9 @@
 #include "fmt/format.h"
 #include "fmt/ranges.h"
 
-#include <boost/circular_buffer.hpp>
+#include "boost/circular_buffer.hpp"
+
+#include "hd/hd_keypress.hpp"
 
 #include <iostream>
 
@@ -70,11 +72,7 @@ int main()
         cb.front(),
         cb.back());
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

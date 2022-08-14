@@ -1,4 +1,7 @@
 #include <iostream>
+
+#include "hd/hd_keypress.hpp"
+
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
@@ -30,11 +33,7 @@ int main()
         std::cout << e.what() << '\n';
     }
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

@@ -1,14 +1,12 @@
 #include <iostream>
 
+#include "hd/hd_keypress.hpp"
+
 int main(int argc, char *argv[])
 {
     std::cout << "Hello World!\n";
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

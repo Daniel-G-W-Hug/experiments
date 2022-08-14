@@ -3,6 +3,8 @@
 
 #include "stlab/forest.hpp"
 
+#include "hd/hd_keypress.hpp"
+
 int main() {
 
   stlab::forest<int> f;

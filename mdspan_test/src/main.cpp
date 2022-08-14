@@ -30,6 +30,8 @@ using std::experimental::mdspan;
 #include "fmt/format.h"
 #include "fmt/ranges.h"
 
+#include "hd/hd_keypress.hpp"
+
 void solve_system()
 {
 
@@ -166,11 +168,7 @@ int main()
         std::cout << e.what();
     }
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

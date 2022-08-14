@@ -9,6 +9,8 @@
 #include <string>
 #include <thread>
 
+#include "hd/hd_keypress.hpp"
+
 // version that uses local jthread instance, in case not yet available in <thread> in C++20 mode (e.g. clang++)
 //#include "jthread/source/jthread.hpp"
 
@@ -97,11 +99,7 @@ int main()
 
     fmt::print("\n");
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

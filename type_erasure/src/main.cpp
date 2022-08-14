@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 
+#include "hd/hd_keypress.hpp"
+
 // ////////////////////////////////////////////////////////////
 // // classical inheritance (intrusive)
 // ////////////////////////////////////////////////////////////
@@ -418,11 +420,7 @@ int main(int argc, char *argv[])
     //     fmt::print(" My id is {}.\n", e.id());
     // }
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

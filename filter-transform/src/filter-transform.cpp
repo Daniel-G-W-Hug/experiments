@@ -2,6 +2,8 @@
 #include <ranges>
 #include <vector>
 
+#include "hd/hd_keypress.hpp"
+
 int main()
 {
     std::vector v{0, 1, 2};
@@ -108,11 +110,7 @@ int main()
     }
     std::cout << "]\n\n";
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }

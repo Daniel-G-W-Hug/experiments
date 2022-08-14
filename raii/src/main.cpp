@@ -4,6 +4,8 @@
 #include "fmt/format.h"
 #include "fmt/ranges.h"
 
+#include "hd/hd_keypress.hpp"
+
 // create a litte wrapper class around a raw array to realize raii
 // RAII: Resource Aquisition is initialization
 
@@ -66,11 +68,7 @@ int main(int argc, char *argv[])
 
     fmt::print("\nEnd RAII demo.\n\n");
 
-    do
-    {
-        std::cout << '\n'
-                  << "Press ENTER to continue...";
-    } while (std::cin.get() != '\n');
+    hd::cmdl_wait_for_enter();
 
     return 0;
 }
