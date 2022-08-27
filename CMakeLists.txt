@@ -130,7 +130,7 @@ add_subdirectory(type_erasure)
 # add_subdirectory(vtk)
 
 # json library from nlohmann
-add_subdirectory(json)
+add_subdirectory(json_test)
 
 # proxy library for unintrusive polymorphism
 add_subdirectory(proxy)

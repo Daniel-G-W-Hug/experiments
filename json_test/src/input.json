@@ -1,0 +1,54 @@
+{
+    "window": {
+        "size": {
+            "width": 600,
+            "height": 400
+        }
+    },
+    "font": {
+        "ffile": "../fonts/arial.ttf",
+        "fsize": 24,
+        "color_rgb": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+        }
+    },
+    "circle": {
+        "name": "CGreen",
+        "position": {
+            "x": 100,
+            "y": 100
+        },
+        "speed": {
+            "sx": -0.03,
+            "sy": 0.02
+        },
+        "color_rgb": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+        },
+        "radius": 50
+    },
+    "rectangle": {
+        "name": "RRed",
+        "position": {
+            "x": 200,
+            "y": 200
+        },
+        "speed": {
+            "sx": 0.1,
+            "sy": 0.15
+        },
+        "color_rgb": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+        },
+        "size": {
+            "width": 70,
+            "height": 25
+        }
+    }
+}
