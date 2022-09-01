@@ -14,23 +14,46 @@
             "b": 255
         }
     },
-    "circle": {
-        "name": "CGreen",
-        "position": {
-            "x": 100,
-            "y": 100
+    "circles": [
+        {
+            "circle": {
+                "name": "CGreen",
+                "position": {
+                    "x": 100,
+                    "y": 100
+                },
+                "speed": {
+                    "sx": -0.03,
+                    "sy": 0.02
+                },
+                "color_rgb": {
+                    "r": 0,
+                    "g": 255,
+                    "b": 0
+                },
+                "radius": 50
+            }
         },
-        "speed": {
-            "sx": -0.03,
-            "sy": 0.02
-        },
-        "color_rgb": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-        },
-        "radius": 50
-    },
+        {
+            "circle": {
+                "name": "CBlue",
+                "position": {
+                    "x": 200,
+                    "y": 200
+                },
+                "speed": {
+                    "sx": 0.02,
+                    "sy": 0.04
+                },
+                "color_rgb": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 255
+                },
+                "radius": 100
+            }
+        }
+    ],
     "rectangle": {
         "name": "RRed",
         "position": {

@@ -1,0 +1,267 @@
+{
+    "window": {
+        "size": {
+            "width": 600,
+            "height": 400
+        }
+    },
+    "font": {
+        "ffile": "../fonts/arial.ttf",
+        "fsize": 24,
+        "color_rgb": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+        }
+    },
+    "circles": [
+        {
+            "circle": {
+                "name": "CGreen",
+                "position": {
+                    "x": 100,
+                    "y": 100
+                },
+                "speed": {
+                    "sx": -0.03,
+                    "sy": 0.02
+                },
+                "color_rgb": {
+                    "r": 0,
+                    "g": 255,
+                    "b": 0
+                },
+                "radius": 50
+            }
+        },
+        {
+            "circle": {
+                "name": "CBlue",
+                "position": {
+                    "x": 200,
+                    "y": 200
+                },
+                "speed": {
+                    "sx": 0.02,
+                    "sy": 0.04
+                },
+                "color_rgb": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 255
+                },
+                "radius": 100
+            }
+        },
+        {
+            "circle": {
+                "name": "CPurple",
+                "position": {
+                    "x": 300,
+                    "y": 300
+                },
+                "speed": {
+                    "sx": -0.02,
+                    "sy": -0.01
+                },
+                "color_rgb": {
+                    "r": 255,
+                    "g": 0,
+                    "b": 255
+                },
+                "radius": 75
+            }
+        },
+        {
+            "circle": {
+                "name": "CGr",
+                "position": {
+                    "x": 120,
+                    "y": 100
+                },
+                "speed": {
+                    "sx": -0.03,
+                    "sy": 0.02
+                },
+                "color_rgb": {
+                    "r": 11,
+                    "g": 255,
+                    "b": 0
+                },
+                "radius": 50
+            }
+        },
+        {
+            "circle": {
+                "name": "CBl",
+                "position": {
+                    "x": 100,
+                    "y": 200
+                },
+                "speed": {
+                    "sx": 0.02,
+                    "sy": 0.04
+                },
+                "color_rgb": {
+                    "r": 0,
+                    "g": 50,
+                    "b": 255
+                },
+                "radius": 100
+            }
+        },
+        {
+            "circle": {
+                "name": "CPu",
+                "position": {
+                    "x": 300,
+                    "y": 200
+                },
+                "speed": {
+                    "sx": -0.02,
+                    "sy": -0.01
+                },
+                "color_rgb": {
+                    "r": 215,
+                    "g": 0,
+                    "b": 215
+                },
+                "radius": 75
+            }
+        }
+    ],
+    "rectangles": [
+        {
+            "rectangle": {
+                "name": "RRed",
+                "position": {
+                    "x": 200,
+                    "y": 200
+                },
+                "speed": {
+                    "sx": 0.1,
+                    "sy": 0.15
+                },
+                "color_rgb": {
+                    "r": 255,
+                    "g": 0,
+                    "b": 0
+                },
+                "size": {
+                    "width": 70,
+                    "height": 25
+                }
+            }
+        },
+        {
+            "rectangle": {
+                "name": "RGrey",
+                "position": {
+                    "x": 300,
+                    "y": 250
+                },
+                "speed": {
+                    "sx": -0.02,
+                    "sy": 0.02
+                },
+                "color_rgb": {
+                    "r": 100,
+                    "g": 100,
+                    "b": 100
+                },
+                "size": {
+                    "width": 90,
+                    "height": 100
+                }
+            }
+        },
+        {
+            "rectangle": {
+                "name": "RTeal",
+                "position": {
+                    "x": 25,
+                    "y": 100
+                },
+                "speed": {
+                    "sx": -0.02,
+                    "sy": -0.02
+                },
+                "color_rgb": {
+                    "r": 0,
+                    "g": 255,
+                    "b": 255
+                },
+                "size": {
+                    "width": 120,
+                    "height": 100
+                }
+            }
+        },
+        {
+            "rectangle": {
+                "name": "RR",
+                "position": {
+                    "x": 100,
+                    "y": 200
+                },
+                "speed": {
+                    "sx": 0.1,
+                    "sy": 0.15
+                },
+                "color_rgb": {
+                    "r": 155,
+                    "g": 0,
+                    "b": 0
+                },
+                "size": {
+                    "width": 70,
+                    "height": 25
+                }
+            }
+        },
+        {
+            "rectangle": {
+                "name": "RGr",
+                "position": {
+                    "x": 200,
+                    "y": 250
+                },
+                "speed": {
+                    "sx": -0.02,
+                    "sy": 0.02
+                },
+                "color_rgb": {
+                    "r": 50,
+                    "g": 50,
+                    "b": 50
+                },
+                "size": {
+                    "width": 90,
+                    "height": 100
+                }
+            }
+        },
+        {
+            "rectangle": {
+                "name": "RT",
+                "position": {
+                    "x": 125,
+                    "y": 100
+                },
+                "speed": {
+                    "sx": -0.02,
+                    "sy": -0.02
+                },
+                "color_rgb": {
+                    "r": 0,
+                    "g": 55,
+                    "b": 55
+                },
+                "size": {
+                    "width": 120,
+                    "height": 100
+                }
+            }
+        }
+    ]
+}

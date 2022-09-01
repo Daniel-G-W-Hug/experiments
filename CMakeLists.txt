@@ -29,7 +29,7 @@
 cmake_minimum_required(VERSION 3.23)
 
 # to use gcc-12 and g++-12 instead of default c / c++ (must come before project
-# line)
+# line
 #[[
 set(CMAKE_C_COMPILER "gcc-12")
 set(CMAKE_CXX_COMPILER "g++-12")
@@ -116,7 +116,7 @@ add_subdirectory(raii)
 # add_subdirectory(filter-transform)
 
 # "mdspan" works on MACOS in clang++, but not in g++-12 (terminates with error)
-add_subdirectory(mdspan_test)
+# add_subdirectory(mdspan_test)
 
 # "condition_var" does work in clang++ only with local jthread instance; does
 # not link with g++ (linker error)

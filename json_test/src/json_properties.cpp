@@ -1,4 +1,4 @@
-#include "properties.hpp"
+#include "json_properties.hpp"
 
 namespace hd
 {

@@ -2,8 +2,8 @@
 set(EXEC_NAME json_test)
 
 # Manually add the sources
-set(HEADERS include/properties.hpp)
-set(SOURCES src/main.cpp src/properties.cpp)
+set(HEADERS include/json_properties.hpp)
+set(SOURCES src/main.cpp src/json_properties.cpp)
 
 add_executable(${EXEC_NAME} ${HEADERS} ${SOURCES})
 

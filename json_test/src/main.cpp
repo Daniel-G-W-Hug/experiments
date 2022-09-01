@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "properties.hpp"
+#include "json_properties.hpp"
 
 #include "hd/hd_keypress.hpp"
 
@@ -41,12 +41,32 @@ int main()
                 std::cout << "font:\n"
                           << font << "\n\n";
             }
+            else if (e.key() == "circles")
+            {
+                for (auto& elem : e.value())
+                {
+                    hd::circle c;
+                    c.parse_from_json(elem["circle"]);
+                    std::cout << "circle:\n"
+                              << c << "\n\n";
+                }
+            }
             else if (e.key() == "circle")
             {
                 hd::circle c;
                 c.parse_from_json(e.value());
                 std::cout << "circle:\n"
                           << c << "\n\n";
+            }
+            else if (e.key() == "rectangles")
+            {
+                for (auto& elem : e.value())
+                {
+                    hd::rectangle r;
+                    r.parse_from_json(elem["rectangle"]);
+                    std::cout << "rectangle:\n"
+                              << r << "\n\n";
+                }
             }
             else if (e.key() == "rectangle")
             {
