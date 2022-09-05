@@ -116,7 +116,10 @@ add_subdirectory(raii)
 # add_subdirectory(filter-transform)
 
 # "mdspan" works on MACOS in clang++, but not in g++-12 (terminates with error)
-# add_subdirectory(mdspan_test)
+add_subdirectory(mdspan_test)
+
+# "ode_int" as another application of mdspan (dependency vtk)
+add_subdirectory(ode_int)
 
 # "condition_var" does work in clang++ only with local jthread instance; does
 # not link with g++ (linker error)
