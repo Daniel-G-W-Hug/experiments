@@ -2,7 +2,7 @@
 set(EXEC_NAME type_erasure)
 
 # Manually add the sources
-set(SOURCES src/main.cpp src/use_any.cpp)
+set(SOURCES src/main.cpp src/use_any.cpp src/use_inheritance.cpp)
 
 add_executable(${EXEC_NAME} ${SOURCES})
 

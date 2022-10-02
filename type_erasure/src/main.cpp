@@ -9,34 +9,7 @@
 #include "hd/hd_keypress.hpp"
 
 #include "use_any.hpp"
-
-// ////////////////////////////////////////////////////////////
-// // classical inheritance (intrusive)
-// ////////////////////////////////////////////////////////////
-
-// struct Four_legged
-// {
-//     virtual std::string make_noise() const = 0;
-//     virtual int id() const = 0;
-// };
-
-// struct Cat_inherited : Four_legged
-// {
-//     std::string make_noise() const override
-//     {
-//         return fmt::format("Cat says meow.");
-//     }
-//     int id() const override { return 1; }
-// };
-
-// struct Dog_inherited : Four_legged
-// {
-//     std::string make_noise() const override
-//     {
-//         return fmt::format("Dog says wow.");
-//     }
-//     int id() const override { return 2; }
-// };
+#include "use_inheritance.hpp"
 
 // ////////////////////////////////////////////////////////////
 // // type erasure (non-intrusive)
@@ -317,23 +290,6 @@ class TypeErased // for polymorphic usage
 int main(int argc, char* argv[])
 {
 
-    // fmt::print("Using classical inheritance:\n");
-
-    // Cat_inherited cat_inh;
-    // Dog_inherited dog_inh;
-    // // std::vector<const Four_legged*> vec_inherited{&cat_inh, &dog_inh};
-    // std::vector<const Four_legged*> vec_inherited;
-    // vec_inherited.push_back(&cat_inh);
-    // vec_inherited.push_back(&dog_inh);
-
-    // for (const auto& e : vec_inherited)
-    // {
-    //     fmt::print("{}", e->make_noise());
-    //     fmt::print(" My id is {}.\n", e->id());
-    // }
-
-    // fmt::print("\n\n");
-
     fmt::print("Using type erasure (non-intrusive):\n");
 
     struct Cat
@@ -429,6 +385,8 @@ int main(int argc, char* argv[])
     // }
 
     HD_ANY::demo();
+
+    HD_INHERITANCE::demo();
 
     hd::cmdl_wait_for_enter();
 
