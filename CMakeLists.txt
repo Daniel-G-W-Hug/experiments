@@ -29,11 +29,10 @@
 cmake_minimum_required(VERSION 3.23)
 
 # to use gcc-12 and g++-12 instead of default c / c++ (must come before project
-# line
-#[[
+# line [[
 set(CMAKE_C_COMPILER "gcc-12")
 set(CMAKE_CXX_COMPILER "g++-12")
-#]]
+# ]]
 
 #
 # for trial of new features, libs or system values"
@@ -70,12 +69,9 @@ FetchContent_MakeAvailable(fmt)
 # https://github.com/stlab/libraries.git GIT_TAG main )
 # FetchContent_MakeAvailable(stlab)
 
-# make json Library available
-FetchContent_Declare(
-  json
-  GIT_REPOSITORY git@github.com:nlohmann/json.git
-  GIT_TAG master)
-FetchContent_MakeAvailable(json)
+# make json Library available FetchContent_Declare( json GIT_REPOSITORY
+# git@github.com:nlohmann/json.git GIT_TAG master)
+# FetchContent_MakeAvailable(json)
 
 # ### make proxy library for unintrusive polymorphism available
 # FetchContent_Declare(msft_proxy GIT_REPOSITORY
@@ -100,10 +96,10 @@ endif()
 
 # incrementally add all subdirectories needed; examples work on all complilers
 add_subdirectory(hello)
-add_subdirectory(fmt_test)
+# add_subdirectory(fmt_test)
 add_subdirectory(circular_buffer) # boost must be installed on the system
 add_subdirectory(implementation_check)
-add_subdirectory(instrumented)
+# add_subdirectory(instrumented)
 add_subdirectory(raii)
 
 # add_subdirectory(reference_wrapper)
@@ -116,24 +112,28 @@ add_subdirectory(raii)
 # add_subdirectory(filter-transform)
 
 # "mdspan" works on MACOS in clang++, but not in g++-12 (terminates with error)
-add_subdirectory(mdspan_test)
+# add_subdirectory(mdspan_test)
 
 # "ode_int" as another application of mdspan (dependency vtk)
-add_subdirectory(ode_int)
+# add_subdirectory(ode_int)
 
 # "condition_var" does work in clang++ only with local jthread instance; does
-# not link with g++ (linker error)
-
-# add_subdirectory(condition_var)
+# not link with g++ (linker error) add_subdirectory(condition_var)
 
 # "type_erasure" works on clang++, but not on g++-11 on MACOS (Linker error)
-add_subdirectory(type_erasure)
+#
+# add_subdirectory(type_erasure)
 
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
 # add_subdirectory(vtk)
 
 # json library from nlohmann
-add_subdirectory(json_test)
+#
+# add_subdirectory(json_test)
 
 # proxy library for unintrusive polymorphism
-add_subdirectory(proxy)
+#
+# add_subdirectory(proxy)
+
+# error handling tests
+add_subdirectory(error_handling)

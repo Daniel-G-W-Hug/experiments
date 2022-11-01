@@ -16,7 +16,7 @@ struct noisy_animal_with_id
     virtual std::string make_noise() const = 0;
     virtual int id() const = 0;
 
-    virtual ~noisy_animal_with_id() {}   // empty virtual base class destructor required
+    virtual ~noisy_animal_with_id() {} // empty virtual base class destructor required
 };
 
 struct Cat : public noisy_animal_with_id
@@ -49,12 +49,12 @@ struct Dog : public noisy_animal_with_id
     Dog(const std::string& name) :
         my_name{name} {}
 
-    std::string make_noise() const
+    std::string make_noise() const override
     {
         return fmt::format("Dog says wow.");
     }
 
-    int id() const
+    int id() const override
     {
         return 2;
     }

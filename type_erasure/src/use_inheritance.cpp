@@ -9,7 +9,6 @@ void HD_INHERITANCE::demo()
 
     Cat c1;
     Cat c2{"Pussy"};
-
     Dog d1{"Knut"};
 
     fmt::print("\n\nUsing classical inheritance...\n\n");
@@ -27,16 +26,14 @@ void HD_INHERITANCE::demo()
 
     for (const auto& e : v)
     {
-        if (dynamic_cast<Cat*>(e) != nullptr)
+        if (Cat* c = dynamic_cast<Cat*>(e)) // if (c != nullptr) e contains a Cat
         {
             fmt::print("e does contain a cat.\n");
-            Cat* c = dynamic_cast<Cat*>(e);
             fmt::print("c->my_name: {}\n", c->my_name);
         }
-        else if (dynamic_cast<Dog*>(e) != nullptr)
+        else if (Dog* d = dynamic_cast<Dog*>(e)) // if (d != nullptr) e contains a dog
         {
             fmt::print("e does contain a dog.\n");
-            Dog* d = dynamic_cast<Dog*>(e);
             fmt::print("d->my_name: {}\n", d->my_name);
         }
     }

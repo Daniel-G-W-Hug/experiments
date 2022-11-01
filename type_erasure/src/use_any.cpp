@@ -10,7 +10,6 @@ void HD_ANY::demo()
 
     Cat c1;
     Cat c2{"Pussy"};
-
     Dog d1{"Knut"};
 
     fmt::print("\n\nUsing std::any...\n\n");
