@@ -26,12 +26,12 @@
 #]]
 #[[ hint: backet comment will not be formated by cmake-format]]
 
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.25)
 
 # to use gcc-12 and g++-12 instead of default c / c++ (must come before project
 # line [[
-set(CMAKE_C_COMPILER "gcc-12")
-set(CMAKE_CXX_COMPILER "g++-12")
+# set(CMAKE_C_COMPILER "gcc-12")
+# set(CMAKE_CXX_COMPILER "g++-12")
 # ]]
 
 #
@@ -42,28 +42,28 @@ project(
   VERSION 0.1
   LANGUAGES CXX)
 
-include(FetchContent)
+# include(FetchContent)
 
 # set(CMAKE_VERBOSE_MAKEFILE ON)  // alternative: make VERBOSE=1
 # add_definitions(-Dxxx)
 
 # make sure cmake is called with indication of CMAKE_TOOLCHAIN_FILE (vcpkg)
-# either manually or via CMake Tools configure args, e.g.
-# '-DCMAKE_TOOLCHAIN_FILE=/Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake'
-# if(NOT DEFINED CMAKE_TOOLCHAIN_FILE) message( FATAL_ERROR
-# "CMAKE_TOOLCHAIN_FILE must be defined to use vcpkg. Configuration aborted." )
-# endif()
+# e.g. via .zshrc export CMAKE_TOOLCHAIN_FILE="/Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake"
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  message(FATAL_ERROR
+          "CMAKE_TOOLCHAIN_FILE must be defined to use vcpkg. Configuration aborted.")
+endif()
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
 # make fmt available
-FetchContent_Declare(
-  fmt
-  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-  GIT_TAG master)
-FetchContent_MakeAvailable(fmt)
+# FetchContent_Declare(
+#  fmt
+#  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+#  GIT_TAG master)
+# FetchContent_MakeAvailable(fmt)
 
 # make stlab/libraries available FetchContent_Declare(stlab GIT_REPOSITORY
 # https://github.com/stlab/libraries.git GIT_TAG main )
@@ -96,44 +96,41 @@ endif()
 
 # incrementally add all subdirectories needed; examples work on all complilers
 add_subdirectory(hello)
-# add_subdirectory(fmt_test)
-add_subdirectory(circular_buffer) # boost must be installed on the system
+add_subdirectory(fmt_test)                # dep: fmt
+add_subdirectory(circular_buffer)         # dep: fmt, boost-circular-buffer
 add_subdirectory(implementation_check)
-# add_subdirectory(instrumented)
-add_subdirectory(raii)
+add_subdirectory(instrumented)            # dep: fmt
+add_subdirectory(raii)                    # dep: fmt
+add_subdirectory(reference_wrapper)       # dep: fmt
 
-# add_subdirectory(reference_wrapper)
-
-# add_subdirectory(forest)   ### requires stlab (difficult to include)
+add_subdirectory(forest)                  # dep: fmt, stlab
 
 # "filter_transform" currently does not work in clang++, but on MACOS on g++
 # only (ranges not implemented for clang++ in c++20)
-
-# add_subdirectory(filter-transform)
+#add_subdirectory(filter-transform)
 
 # "mdspan" works on MACOS in clang++, but not in g++-12 (terminates with error)
-# add_subdirectory(mdspan_test)
+add_subdirectory(mdspan_test)             # dep: fmt, mdspan
 
 # "ode_int" as another application of mdspan (dependency vtk)
-# add_subdirectory(ode_int)
+add_subdirectory(ode_int)                 # dep: fmt, vtk
 
-# "condition_var" does work in clang++ only with local jthread instance; does
-# not link with g++ (linker error) add_subdirectory(condition_var)
+# "condition_var" does work in clang++ only with local jthread instance
+# does not link with g++ (linker error)
+add_subdirectory(condition_var)           # dep: fmt, josuttis-jthread
 
 # "type_erasure" works on clang++, but not on g++-11 on MACOS (Linker error)
-#
-# add_subdirectory(type_erasure)
+add_subdirectory(type_erasure)            # dep: fmt
 
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
-# add_subdirectory(vtk)
+add_subdirectory(vtk)                     # dep: fmt, vtk
 
 # json library from nlohmann
-#
-# add_subdirectory(json_test)
+add_subdirectory(json_test)               # dep: fmt, nlohmann-json
 
 # proxy library for unintrusive polymorphism
-#
-# add_subdirectory(proxy)
+add_subdirectory(proxy)                   # dep: fmt, nlohmann-json, proxy
 
 # error handling tests
-add_subdirectory(error_handling)
+# <source_location> does currently not yet work with clang++
+# add_subdirectory(error_handling)

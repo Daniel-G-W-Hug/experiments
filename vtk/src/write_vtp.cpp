@@ -22,7 +22,7 @@ struct point_3d
     double x, y, z;
 };
 
-void write_polyline(const std::string &fname, const std::vector<point_3d> &v)
+void write_polyline(const std::string& fname, const std::vector<point_3d>& v)
 {
     vtkSmartPointer<vtkPoints> points = vtkSmartPointer<vtkPoints>::New();
 
@@ -96,7 +96,7 @@ int main()
             v3d[i].z = 0;
         }
 
-        std::string fname = fmt::format("vtk/test{:04}.vtp", l);
+        std::string fname = fmt::format("../vtk/output/test{:04}.vtp", l);
         write_polyline(fname, v3d);
     }
 
