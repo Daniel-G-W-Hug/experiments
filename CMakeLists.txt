@@ -132,5 +132,5 @@ add_subdirectory(json_test)               # dep: fmt, nlohmann-json
 add_subdirectory(proxy)                   # dep: fmt, nlohmann-json, proxy
 
 # error handling tests
-# <source_location> does currently not yet work with clang++
+# <source_location> does currently not yet work with clang++ (header not found as of 01/2023)
 # add_subdirectory(error_handling)
