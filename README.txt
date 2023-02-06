@@ -5,9 +5,13 @@ to configure and build with cmake:
 mkdir build
 cd build
 
-- install dependencies via vcpkg
-- set environment: define CMAKE_TOOLCHAIN_FILE, e.g.
-- export CMAKE_TOOLCHAIN_FILE="/Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake"
+- install dependencies via vcpkg (vcpkg must be installed in ~/prg/cpp/vcpkg)
+- the CMAKE_TOOLCHAIN_FILE is set in CMakeLists.txt accordingly:
+if (WIN32)
+  set(CMAKE_TOOLCHAIN_FILE "C:/Users/danie/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake")
+else
+  set(CMAKE_TOOLCHAIN_FILE /Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake)
+endif()
 
 vcpkg install fmt
 vcpkg install boost-circular-buffer
