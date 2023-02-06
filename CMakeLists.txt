@@ -49,8 +49,6 @@ project(
   VERSION 0.1
   LANGUAGES CXX)
 
-# include(FetchContent)
-
 # set(CMAKE_VERBOSE_MAKEFILE ON)  // alternative: make VERBOSE=1
 # add_definitions(-Dxxx)
 
@@ -64,26 +62,6 @@ endif()
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
-
-# make fmt available
-# FetchContent_Declare(
-#  fmt
-#  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
-#  GIT_TAG master)
-# FetchContent_MakeAvailable(fmt)
-
-# make stlab/libraries available FetchContent_Declare(stlab GIT_REPOSITORY
-# https://github.com/stlab/libraries.git GIT_TAG main )
-# FetchContent_MakeAvailable(stlab)
-
-# make json Library available FetchContent_Declare( json GIT_REPOSITORY
-# git@github.com:nlohmann/json.git GIT_TAG master)
-# FetchContent_MakeAvailable(json)
-
-# ### make proxy library for unintrusive polymorphism available
-# FetchContent_Declare(msft_proxy GIT_REPOSITORY
-# git@github.com:microsoft/proxy.git GIT_TAG main )
-# FetchContent_MakeAvailable(msft_proxy)
 
 # set a default build type: Debug | RelWithDebInfo | Release | MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
