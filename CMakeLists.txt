@@ -119,3 +119,6 @@ add_subdirectory(proxy)                   # dep: fmt, nlohmann-json, proxy
 # error handling tests
 # <source_location> does currently not yet work with clang++ (header not found as of 01/2023)
 # add_subdirectory(error_handling)
+
+# tinyspline trial
+add_subdirectory(tinyspline)               # dep: fmt, tinyspline
