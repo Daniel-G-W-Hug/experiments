@@ -35,10 +35,10 @@ cmake_minimum_required(VERSION 3.25)
 # ]]
 
 # CMAKE_TOOLCHAIN_FILE must be defined BEFORE project(...)!
-if (WIN32)
+if(WIN32)
   set(CMAKE_TOOLCHAIN_FILE "C:/Users/danie/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake")
-else
-  set(CMAKE_TOOLCHAIN_FILE /Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake)
+else()
+  set(CMAKE_TOOLCHAIN_FILE "/Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake")
 endif()
 
 #
