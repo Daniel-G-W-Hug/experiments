@@ -139,7 +139,6 @@ int main(int argc, char* argv[])
 
     // hd::output_t otype = hd::output_t::none;
     hd::output_t otype = hd::output_t::vtp;
-    std::string fname{"../ode_int/output/file{:04}.vtp"};
 
     double ampl = 2.0; // amplitude of source term
     double c = 6.28;   // convection speed
@@ -150,7 +149,7 @@ int main(int argc, char* argv[])
     {
         double dt = t(nt + 1) - t(nt);
 
-        hd::write_to_file(otype, fname, nt, x_mem, u_mem);
+        hd::write_to_file(otype, nt, x_mem, u_mem);
 
         // Runge-Kutte time integration scheme
         for (int rk_step = 0; rk_step < 4; ++rk_step)

@@ -11,9 +11,17 @@
 
 #include "hd/hd_keypress.hpp"
 
+#ifdef WIN32
+
+#include <thread>
+
+#else
+
 // version that uses local jthread instance, in case not yet available in <thread> in C++20 mode (e.g. clang++)
 // #include "jthread/source/jthread.hpp"
 #include "jthread.hpp"
+
+#endif
 
 using namespace std::chrono_literals;
 

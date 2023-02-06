@@ -14,8 +14,8 @@
 
 #include "hd/hd_keypress.hpp"
 
-#define _USE_MATH_DEFINES
-#include <cmath>
+#include <numbers>             // for pi
+using namespace std::numbers;
 
 struct point_3d
 {
@@ -73,10 +73,10 @@ int main()
 
     double const dx = 2 * lambda / (num_pts - 1);
 
-    double const k = 2 * M_PI / lambda; // wavenumber
+    double const k = 2 * pi / lambda; // wavenumber
 
     double const f = 1; // [Hz]
-    double const omega = 2 * M_PI * f;
+    double const omega = 2 * pi * f;
 
     double const T = 1. / f;
     double const dt = T / num_tpts;

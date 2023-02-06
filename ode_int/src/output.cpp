@@ -57,7 +57,6 @@ void write_polyline(std::string const& fname, std::vector<point_3d> const& v)
 }
 
 void write_to_file(output_t const otype,
-                   std::string const& fname,
                    int nt,
                    std::vector<double> const& x,
                    std::vector<double> const& u)
@@ -89,7 +88,7 @@ void write_to_file(output_t const otype,
                 v3d[i].y = u[i];
                 v3d[i].z = 0.0;
             }
-            std::string fn = fmt::format(fname, nt);
+            std::string fn = fmt::format("../ode_int/output/file{:04}.vtp", nt);
             write_polyline(fn, v3d);
         }
 

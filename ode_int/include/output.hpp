@@ -33,7 +33,6 @@ struct point_3d // for vtp file output
 };
 
 void write_to_file(output_t const otype,
-                   std::string const& fname,
                    int nt,
                    std::vector<double> const& x,
                    std::vector<double> const& u);

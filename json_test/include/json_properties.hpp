@@ -8,12 +8,12 @@ using namespace std::literals::string_literals;
 using json = nlohmann::ordered_json;
 
 // redefine MACRO since original macro uses nlohmann::json instead of json
-#if defined(NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE)
-#undef NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE
-#endif
-#define NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Type, __VA_ARGS__...)                                                                                         \
-    inline void to_json(json& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
-    inline void from_json(const json& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
+// #if defined(NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE)
+// #undef NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE
+// #endif
+// #define NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Type, __VA_ARGS__...)                                                                                         \
+//     inline void to_json(json& nlohmann_json_j, const Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_TO, __VA_ARGS__)) } \
+//     inline void from_json(const json& nlohmann_json_j, Type& nlohmann_json_t) { NLOHMANN_JSON_EXPAND(NLOHMANN_JSON_PASTE(NLOHMANN_JSON_FROM, __VA_ARGS__)) }
 
 namespace hd
 {

@@ -98,6 +98,8 @@ int main() {
     }
     fmt::print("\n\n");
   }
+  
+  hd::cmdl_wait_for_enter();
 
   return 0;
 }
