@@ -21,6 +21,7 @@ vcpkg install vtk
 vcpkg install josuttis-jthread
 vcpkg install nlohmann-json
 vcpkg install proxy
+vcpkg install tinyspline
 
 - configure and build using cmake:
 
