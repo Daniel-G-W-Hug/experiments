@@ -101,10 +101,9 @@ add_subdirectory(mdspan_test)             # dep: fmt, mdspan
 add_subdirectory(ode_int)                 # dep: fmt, vtk
 
 # "condition_var" does work in clang++ only with local jthread instance
-# does not link with g++ (linker error)
 add_subdirectory(condition_var)           # dep: fmt, josuttis-jthread
 
-# "type_erasure" works on clang++, but not on g++-11 on MACOS (Linker error)
+# "type_erasure" works on clang++, but not on g++-12 on MACOS (Linker error)
 add_subdirectory(type_erasure)            # dep: fmt
 
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
@@ -122,3 +121,6 @@ add_subdirectory(proxy)                   # dep: fmt, nlohmann-json, proxy
 
 # tinyspline trial
 add_subdirectory(tinyspline)               # dep: fmt, tinyspline
+
+# "concurrent_threads" does work in clang++ only with local jthread instance
+add_subdirectory(concurrent_threads)       # dep: fmt, josuttis-jthread
