@@ -1,27 +1,3 @@
-// use branch "single-header" from mdspan github
-//
-// To try using subscript operator comment in macro below
-// the header will by default also check for the feature macro, and enable it
-// defining the macro to 0 will overwrite the automatic setting
-// x86-64 clang (experimental auto NSDMI) supports the operator, but you need
-// to explicitly comment in below macro
-// #define MDSPAN_USE_BRACKET_OPERATOR 1
-
-// To force enable operator() comment in the macro below
-// You can enable both at the same time.
-// #define MDSPAN_USE_PAREN_OPERATOR 1
-
-//#include "mdspan/mdspan.hpp"
-#include <experimental/mdspan>
-
-// make mdspan less verbose
-using std::experimental::dextents;
-using std::experimental::dynamic_extent;
-using std::experimental::extents;
-using std::experimental::layout_left;
-using std::experimental::layout_right;
-using std::experimental::mdspan;
-
 #include "hd/hd_functions.hpp"
 #include "hd/hd_solver.hpp"
 #include "hd/hd_stencil.hpp"
