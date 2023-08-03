@@ -6,11 +6,13 @@ set(SOURCES src/main.cpp src/instrumented.cpp)
 # set(HEADERS "")
 
 add_executable(${EXEC_NAME} ${SOURCES})
+add_executable(instrumented_func_call src/instrumented_function_calls.cpp)
 
 # target link libraries have to be added AFTER add_executable or add_library!
 target_include_directories(${EXEC_NAME} PRIVATE include)
 target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../include)
+target_include_directories(instrumented_func_call PRIVATE ${CMAKE_SOURCE_DIR}/../../include)
 
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt-header-only)
