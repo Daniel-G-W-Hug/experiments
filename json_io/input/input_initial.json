@@ -1,0 +1,82 @@
+{
+    "joysticks": [
+        {
+            "joystick_id": {
+                "a_id"          : "0"                     , 
+                "a_index"       : "0"                     , 
+                "a_name"        : "Joystick"              , 
+                "sys_name"      : "Joystick HOTAS Warthog", 
+                "sys_product_id": "1"                     , 
+                "sys_vendor_id" : "0815"                    
+            }
+        }, 
+        {
+            "joystick_id": {
+                "a_id"          : "1"                     , 
+                "a_index"       : "1"                     , 
+                "a_name"        : "Throttle"              , 
+                "sys_name"      : "Throttle HOTAS Warthog", 
+                "sys_product_id": "2"                     , 
+                "sys_vendor_id" : "0815"                    
+            }
+        }, 
+        {
+            "joystick_id": {
+                "a_id"          : "2"                         , 
+                "a_index"       : "2"                         , 
+                "a_name"        : "Rudder"                    , 
+                "sys_name"      : "Rudder Pedal HOTAS Warthog", 
+                "sys_product_id": "3"                         , 
+                "sys_vendor_id" : "0815"                        
+            }
+        }
+    ], 
+    "capabilities": [
+        {
+            "ref_id": "0", 
+            "nButton": "19", 
+            "nPOV": "1", 
+            "nAxis": "2", 
+            "axes": [1, 1, 0, 0, 0, 0, 0, 0], 
+            "nameAxes": "X Y"
+        }, 
+        {
+            "ref_id": "1", 
+            "nButton": "23", 
+            "nPOV": "0", 
+            "nAxis": "3", 
+            "axes": [0, 0, 1, 1, 0, 0, 1, 0], 
+            "nameAxes": "Z Rx S0"
+        }, 
+        {
+            "ref_id": "2", 
+            "nButton": "0", 
+            "nPOV": "0", 
+            "nAxis": "3", 
+            "axes": [0, 0, 1, 1, 1, 0, 0, 0], 
+            "nameAxes": "Z Rx Ry"
+        }
+    ], 
+    "button_maps": [
+        {
+            "ref_id": "0", 
+            "buttons": [
+                {"number": "1", "name": "Fire Weapon (1st Detent)"}, 
+                {"number": "2", "name": "Release Weapon"          }, 
+                {"number": "3", "name": "MMCB"                    }, 
+                {"number": "4", "name": "NWS"                     }, 
+                {"number": "5", "name": "Wheel brake"             }, 
+                {"number": "6", "name": "Fire Weapon (2nd detent)"}  
+            ]
+        }, 
+        {
+            "ref_id": "1", 
+            "buttons": [
+                {"number": "1", "name": "B1"}, 
+                {"number": "2", "name": "B2"}, 
+                {"number": "3", "name": "B3"}, 
+                {"number": "4", "name": "B4"}  
+            ]
+        }
+    ]
+}

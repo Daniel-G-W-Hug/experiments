@@ -1,0 +1,82 @@
+{
+    "device": [
+        {
+            "a_id": 0, 
+            "a_index": 0, 
+            "a_name": "Joystick", 
+            "sys_name": "Joystick HOTAS Warthog", 
+            "sys_product_id": 1, 
+            "sys_vendor_id": 815
+        }, 
+        {
+            "a_id": 1, 
+            "a_index": 1, 
+            "a_name": "Throttle", 
+            "sys_name": "Throttle HOTAS Warthog", 
+            "sys_product_id": 2, 
+            "sys_vendor_id": 815
+        }, 
+        {
+            "a_id": 2, 
+            "a_index": 2, 
+            "a_name": "Rudder", 
+            "sys_name": "Rudder Pedals HOTAS Warthog", 
+            "sys_product_id": 3, 
+            "sys_vendor_id": 815
+        }
+    ], 
+    "device_capabilities": [
+        {
+            "a_id": 0, 
+            "capability": {
+                "axis_flags": 192, 
+                "axis_string": "X Y", 
+                "nAxis": 2, 
+                "nButton": 19, 
+                "nPOV": 1
+            }
+        }, 
+        {
+            "a_id": 1, 
+            "capability": {
+                "axis_flags": 50, 
+                "axis_string": "Z Rx S0", 
+                "nAxis": 3, 
+                "nButton": 23, 
+                "nPOV": 0
+            }
+        }, 
+        {
+            "a_id": 2, 
+            "capability": {
+                "axis_flags": 56, 
+                "axis_string": "Z Rx Ry", 
+                "nAxis": 3, 
+                "nButton": 0, 
+                "nPOV": 0
+            }
+        }
+    ], 
+    "device_map_buttons": [
+        {
+            "a_id": 0, 
+            "buttons": [
+                {"index": 0, "name": "Fire (1st detent)"}, 
+                {"index": 1, "name": "Weapon release"   }, 
+                {"index": 2, "name": "MMCB"             }, 
+                {"index": 3, "name": "NWS"              }, 
+                {"index": 4, "name": "Wheel brake"      }, 
+                {"index": 5, "name": "Fire (2nd detent)"}  
+            ]
+        }, 
+        {
+            "a_id": 1, 
+            "buttons": [
+                {"index": 0, "name": "B1"}, 
+                {"index": 1, "name": "B2"}, 
+                {"index": 2, "name": "B3"}, 
+                {"index": 3, "name": "B4"}  
+            ]
+        }
+    ]
+}

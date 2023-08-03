@@ -109,8 +109,11 @@ add_subdirectory(type_erasure)            # dep: fmt
 # "vtk" works on clang++, but not on g++-11 on MACOS (Linker error)
 add_subdirectory(vtk)                     # dep: fmt, vtk
 
-# json library from nlohmann
+# test json library from nlohmann
 add_subdirectory(json_test)               # dep: fmt, nlohmann-json
+
+# example using json library from nlohmann (button mapping)
+add_subdirectory(json_io)                 # dep: fmt, nlohmann-json
 
 # proxy library for unintrusive polymorphism
 add_subdirectory(proxy)                   # dep: fmt, nlohmann-json, proxy
