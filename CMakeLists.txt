@@ -28,10 +28,10 @@
 
 cmake_minimum_required(VERSION 3.25)
 
-# to use gcc-12 and g++-12 instead of default c / c++ (must come before project
+# to use gcc-13 and g++-13 instead of default c / c++ (must come before project
 # line [[
-# set(CMAKE_C_COMPILER "gcc-12")
-# set(CMAKE_CXX_COMPILER "g++-12")
+# set(CMAKE_C_COMPILER "gcc-13")
+# set(CMAKE_CXX_COMPILER "g++-13")
 # ]]
 
 # CMAKE_TOOLCHAIN_FILE must be defined BEFORE project(...)!
@@ -86,13 +86,7 @@ add_subdirectory(circular_buffer)         # dep: fmt, boost-circular-buffer
 add_subdirectory(implementation_check)
 add_subdirectory(instrumented)            # dep: fmt
 add_subdirectory(raii)                    # dep: fmt
-add_subdirectory(reference_wrapper)       # dep: fmt
-
-add_subdirectory(forest)                  # dep: fmt, stlab
-
-# "filter_transform" currently does not work in clang++, but on MACOS on g++
-# only (ranges not implemented for clang++ in c++20)
-#add_subdirectory(filter-transform)
+add_subdirectory(filter-transform)
 
 # "mdspan" works on MACOS in clang++, but not in g++-12 (terminates with error)
 add_subdirectory(mdspan_test)             # dep: fmt, mdspan
@@ -125,5 +119,4 @@ add_subdirectory(proxy)                   # dep: fmt, nlohmann-json, proxy
 # tinyspline trial
 add_subdirectory(tinyspline)               # dep: fmt, tinyspline
 
-# "concurrent_threads" does work in clang++ only with local jthread instance
-add_subdirectory(concurrent_threads)       # dep: fmt, josuttis-jthread
+add_subdirectory(ctor_dtor)
