@@ -32,7 +32,7 @@ void rk4_step(mdspan<double, dextents<int, 1>> u,
               int const rk_step)
 {
 
-    // currently u(0) is fixed by boundary condition of source term
+    // currently u[0] is fixed by boundary condition of source term
 
     double rk1 = 1. / 6. * dt;
     double rk2 = 1. / 3. * dt;
@@ -46,35 +46,35 @@ void rk4_step(mdspan<double, dextents<int, 1>> u,
         case 1: // predictor 1: Euler forward to t + 0.5*dt
             for (int i = 1; i < n; ++i)
             {
-                uh(0, i) = u(i);
+                uh[0, i] = u[i];
             }
             for (int i = 1; i < n; ++i)
             {
-                u(i) = uh(0, i) + rk3 * rhs(i);
-                uh(1, i) = rk1 * rhs(i);
+                u[i] = uh[0, i] + rk3 * rhs[i];
+                uh[1, i] = rk1 * rhs[i];
             }
             break;
 
         case 2: // corrector 1: Euler backward to t + 0.5*dt
             for (int i = 1; i < n; ++i)
             {
-                u(i) = uh(0, i) + rk3 * rhs(i);
-                uh(1, i) += rk2 * rhs(i);
+                u[i] = uh[0, i] + rk3 * rhs[i];
+                uh[1, i] += rk2 * rhs[i];
             }
             break;
 
         case 3: // predictor 2: mitpoint rule to t + dt
             for (int i = 1; i < n; ++i)
             {
-                u(i) = uh(0, i) + rk4 * rhs(i);
-                uh(1, i) += rk2 * rhs(i);
+                u[i] = uh[0, i] + rk4 * rhs[i];
+                uh[1, i] += rk2 * rhs[i];
             }
             break;
 
         case 4: // corrector 2: Simpson rule to t + dt
             for (int i = 1; i < n; ++i)
             {
-                u(i) = uh(0, i) + uh(1, i) + rk1 * rhs(i);
+                u[i] = uh[0, i] + uh[1, i] + rk1 * rhs[i];
             }
             break;
     }

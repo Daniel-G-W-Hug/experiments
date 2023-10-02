@@ -3,10 +3,8 @@ set(EXEC_NAME hello)
 
 # Manually add the sources
 set(SOURCES src/main.cpp)
-# set(HEADERS "")
 
 add_executable(${EXEC_NAME} ${SOURCES})
-# add_executable(${EXEC_NAME} ${SOURCES} ${HEADERS})
 
 # target link libraries have to be added AFTER add_executable or add_library!
 # target_include_directories(${EXEC_NAME} PRIVATE include)

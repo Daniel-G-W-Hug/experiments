@@ -6,16 +6,15 @@
 
 // create file-output for ode simulation values
 
-// #include "mdspan/mdspan.hpp"
-#include <experimental/mdspan>
+#include "mdspan/mdspan.hpp"
 
 // make mdspan less verbose
-using std::experimental::dextents;
-using std::experimental::dynamic_extent;
-using std::experimental::extents;
-using std::experimental::layout_left;
-using std::experimental::layout_right;
-using std::experimental::mdspan;
+using Kokkos::dextents;
+using Kokkos::dynamic_extent;
+using Kokkos::extents;
+using Kokkos::layout_left;
+using Kokkos::layout_right;
+using Kokkos::mdspan;
 
 namespace hd
 {

@@ -9,8 +9,6 @@
 #include <string>
 #include <thread>
 
-#include "hd/hd_keypress.hpp"
-
 #ifdef WIN32
 #include <thread>
 #else
@@ -18,6 +16,8 @@
 // #include "jthread/source/jthread.hpp"
 #include "jthread.hpp"
 #endif
+
+#include "hd/hd_keypress.hpp"
 
 using namespace std::chrono_literals;
 

@@ -26,20 +26,13 @@
 #]]
 #[[ hint: backet comment will not be formated by cmake-format]]
 
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.27)
 
 # to use gcc-13 and g++-13 instead of default c / c++ (must come before project
 # line [[
 # set(CMAKE_C_COMPILER "gcc-13")
 # set(CMAKE_CXX_COMPILER "g++-13")
 # ]]
-
-# CMAKE_TOOLCHAIN_FILE must be defined BEFORE project(...)!
-if(WIN32)
-  set(CMAKE_TOOLCHAIN_FILE "C:/Users/danie/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake")
-else()
-  set(CMAKE_TOOLCHAIN_FILE "/Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake")
-endif()
 
 #
 # for trial of new features, libs or system values"
@@ -48,16 +41,6 @@ project(
   experiments
   VERSION 0.1
   LANGUAGES CXX)
-
-# set(CMAKE_VERBOSE_MAKEFILE ON)  // alternative: make VERBOSE=1
-# add_definitions(-Dxxx)
-
-# make sure cmake is called with indication of CMAKE_TOOLCHAIN_FILE (vcpkg)
-# e.g. via .zshrc export CMAKE_TOOLCHAIN_FILE="/Users/daniel/prg/cpp/vcpkg/scripts/buildsystems/vcpkg.cmake"
-if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-  message(FATAL_ERROR
-          "CMAKE_TOOLCHAIN_FILE must be defined to use vcpkg. Configuration aborted.")
-endif()
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 23)
@@ -114,7 +97,7 @@ add_subdirectory(proxy)                   # dep: fmt, nlohmann-json, proxy
 
 # error handling tests
 # <source_location> does currently not yet work with clang++ (header not found as of 01/2023)
-# add_subdirectory(error_handling)
+add_subdirectory(error_handling)
 
 # tinyspline trial
 add_subdirectory(tinyspline)               # dep: fmt, tinyspline

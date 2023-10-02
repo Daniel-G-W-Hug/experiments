@@ -30,13 +30,13 @@ void solve_system()
     {
         for (int j = 0; j < m.extent(1); ++j)
         {
-            fmt::print("m({},{}) == {}, ", i, j, m(i, j));
+            fmt::print("m({},{}) == {}, ", i, j, m[i, j]);
         }
         fmt::print("\n");
     }
 
     for (int i = 0; i < m.extent(0); ++i)
-        fmt::print("rhs({}) == {},", i, rhs(i));
+        fmt::print("rhs({}) == {},", i, rhs[i]);
     fmt::print("\n");
 }
 
@@ -44,12 +44,12 @@ void func(mdspan<int, dextents<int, 2>> s)
 {
 
     // change last element
-    s(s.extent(0) - 1, s.extent(1) - 1) = 22;
+    s[s.extent(0) - 1, s.extent(1) - 1] = 22;
     // s[s.extent(0) - 1, s.extent(1) - 1] = 22;
 
     for (int i = 0; i < s.extent(0); ++i)
         for (int j = 0; j < s.extent(1); ++j)
-            fmt::print("s({},{}) == {}\n", i, j, s(i, j));
+            fmt::print("s({},{}) == {}\n", i, j, s[i, j]);
     // fmt::print("s({},{}) == {}\n", i, j, s[i, j]);
 }
 
@@ -71,7 +71,7 @@ int main()
 
     for (int i = 0; i < m.extent(0); ++i)
         for (int j = 0; j < m.extent(1); ++j)
-            fmt::print("m({},{}) == {}\n", i, j, m(i, j));
+            fmt::print("m({},{}) == {}\n", i, j, m[i, j]);
     // fmt::print("m({},{}) == {}\n", i, j, m[i, j]);
 
     fmt::print("\n");
@@ -82,7 +82,7 @@ int main()
 
     for (int i = 0; i < m.extent(0); ++i)
         for (int j = 0; j < m.extent(1); ++j)
-            fmt::print("m({},{}) == {}\n", i, j, m(i, j));
+            fmt::print("m({},{}) == {}\n", i, j, m[i, j]);
     // fmt::print("m({},{}) == {}\n", i, j, m[i, j]);
 
     fmt::print("d2 = {}\n\n", d2);

@@ -13,8 +13,7 @@
 
 #include "fmt/format.h"
 #include "fmt/ranges.h"
-// #include "mdspan/mdspan.hpp"
-#include <experimental/mdspan>
+#include "mdspan/mdspan.hpp"
 
 #include <cmath>   // std::sin
 #include <cstddef> // std::size_t
@@ -40,12 +39,12 @@ ToDo:
 */
 
 // make mdspan less verbose
-using std::experimental::dextents;
-using std::experimental::dynamic_extent;
-using std::experimental::extents;
-using std::experimental::layout_left;
-using std::experimental::layout_right;
-using std::experimental::mdspan;
+using Kokkos::dextents;
+using Kokkos::dynamic_extent;
+using Kokkos::extents;
+using Kokkos::layout_left;
+using Kokkos::layout_right;
+using Kokkos::mdspan;
 
 int main(int argc, char* argv[])
 {
@@ -125,7 +124,7 @@ int main(int argc, char* argv[])
     //     // f' = -2x + 10;
     //     // f'' = -2;
     //     for (std::size_t i = 0; i < x.extent(0); ++i)
-    //         u(i) = -1. * (x(i) - 5) * (x(i) - 5) + 1;
+    //         u[i] = -1. * (x[i] - 5) * (x[i] - 5) + 1;
 
     //     hd::fd_dfdx(a0_f1, b0_f1, c0_f1, u, dudx);
     //     hd::fd_d2fdx2(a0_f2, b0_f2, c0_f2, u, d2udx2);
@@ -147,17 +146,17 @@ int main(int argc, char* argv[])
     // main time loop
     for (int nt = 0; nt < TIMESTEPS - 1; ++nt)
     {
-        double dt = t(nt + 1) - t(nt);
+        double dt = t[nt + 1] - t[nt];
 
         hd::write_to_file(otype, nt, x_mem, u_mem);
 
         // Runge-Kutte time integration scheme
         for (int rk_step = 0; rk_step < 4; ++rk_step)
         {
-            double trk = hd::get_time_rkstep(t(nt), dt, rk_step);
+            double trk = hd::get_time_rkstep(t[nt], dt, rk_step);
 
             // set boundary condition in source-term at u(0)
-            u(0) = ampl * std::sin(4 * pi * trk);
+            u[0] = ampl * std::sin(4 * pi * trk);
 
             // get space operator (rhs: of du/dt = rhs)
             hd::fd_dfdx(a0_f1, b0_f1, c0_f1, u, dudx);
@@ -165,7 +164,7 @@ int main(int argc, char* argv[])
 
             for (int i = 0; i < XPTS; ++i)
             {
-                rhs(i) = -c * dudx(i) + d * d2udx2(i);
+                rhs[i] = -c * dudx[i] + d * d2udx2[i];
             }
 
             // do the time integration
