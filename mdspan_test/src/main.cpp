@@ -16,9 +16,9 @@ void solve_system()
     std::array<int, 3> m_perm_s;
 
     // setup the corresponding mdarray views onto the data
-    auto m = mdspan<double, extents<int, 3, 3>>(m_s.data());
-    auto rhs = mdspan<double, extents<int, 3>>(rhs_s.data());
-    auto m_perm = mdspan<int, extents<int, 3>>(m_perm_s.data());
+    auto m = mdspan<double, extents<std::size_t, 3, 3>>(m_s.data());
+    auto rhs = mdspan<double, extents<std::size_t, 3>>(rhs_s.data());
+    auto m_perm = mdspan<int, extents<std::size_t, 3>>(m_perm_s.data());
 
     // LU decomposition of matrix
     hd::lu_decomp(m, m_perm);
@@ -40,7 +40,7 @@ void solve_system()
     fmt::print("\n");
 }
 
-void func(mdspan<int, dextents<int, 2>> s)
+void func(mdspan<int, dextents<std::size_t, 2>> s)
 {
 
     // change last element
@@ -59,7 +59,7 @@ int main()
     std::array d2{12, 13, 14};
 
     double buffer[3 * 4] = {1.0, 2.0, 3.0, 4.0, 6.0, 8.0, 10.0, 12.0, 24.0, 48.0, 72.0, 96.0};
-    auto fd = mdspan<double, extents<int, 3, 4>>(buffer);
+    auto fd = mdspan<double, extents<std::size_t, 3, 4>>(buffer);
 
     fmt::print("fd = {}\n\n", buffer);
 
