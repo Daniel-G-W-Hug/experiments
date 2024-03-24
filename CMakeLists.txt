@@ -103,3 +103,5 @@ add_subdirectory(error_handling)
 add_subdirectory(tinyspline)               # dep: fmt, tinyspline
 
 add_subdirectory(ctor_dtor)
+
+add_subdirectory(variadic_test)            # dep: fmt
