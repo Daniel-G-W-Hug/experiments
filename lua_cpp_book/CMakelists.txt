@@ -1,0 +1,15 @@
+
+find_package(fmt CONFIG REQUIRED)
+find_package(Lua 5.4 REQUIRED)
+
+add_executable(hello_lua src/hello_main.cpp)
+add_executable(hello_luascript src/hello_script_main.cpp)
+add_executable(lua_executor src/executor_main.cpp src/lua_executor.cpp)
+
+target_include_directories(hello_lua PRIVATE ${LUA_INCLUDE_DIR})
+target_include_directories(hello_luascript PRIVATE ${LUA_INCLUDE_DIR})
+target_include_directories(lua_executor PRIVATE ${LUA_INCLUDE_DIR})
+
+target_link_libraries(hello_lua PRIVATE fmt::fmt-header-only ${LUA_LIBRARIES})
+target_link_libraries(hello_luascript PRIVATE fmt::fmt-header-only ${LUA_LIBRARIES})
+target_link_libraries(lua_executor PRIVATE fmt::fmt-header-only ${LUA_LIBRARIES})

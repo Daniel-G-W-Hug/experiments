@@ -107,3 +107,5 @@ add_subdirectory(ctor_dtor)
 add_subdirectory(variadic_test)            # dep: fmt
 
 add_subdirectory(lua_sol_test)             # dep: fmt, sol2
+
+add_subdirectory(lua_cpp_book)             # dep: fmt, penlight (via luarocks)
