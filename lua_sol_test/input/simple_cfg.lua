@@ -8,3 +8,6 @@ config = {
 }
 
 vec = { 11, 12, 13, 14, 15 }
+
+pr = require 'pl.pretty' -- use penlight for pretty printing
+pr.dump(vec)

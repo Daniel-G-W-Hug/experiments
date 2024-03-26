@@ -29,7 +29,7 @@ int main()
     sol::state lua;
     lua.open_libraries();
 
-    lua.script("print('bark bark bark!')", &sol::script_default_on_error);
+    // lua.script("print('bark bark bark!')", &sol::script_default_on_error);
 
     lua.script_file("../../lua_sol_test/input/simple_cfg.lua");
 
@@ -71,8 +71,13 @@ int main()
     for (int i = 0; i < v.size(); ++i) {
         v[i] = lua["vec"][i + 1];
     }
-    fmt::print("v: {}", fmt::join(v, ", "));
+    fmt::println("v: {}", fmt::join(v, ", "));
 
+    for (int i = 0; i < v.size(); ++i) {
+        lua["vec"][i + 1] = v[i] * 2;
+    }
+
+    lua.script("pr.dump(vec)");
 
     hd::cmdl_wait_for_enter();
 
