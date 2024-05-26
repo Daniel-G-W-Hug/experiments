@@ -1,8 +1,9 @@
 #include "di8joy_json_io.hpp"
 #include "hd/hd_string_trim.hpp"
 
-namespace hd
-{
+#include <bitset>
+
+namespace hd {
 
 ////////////////////////////////////////////////////////////////////////////////
 // stream operators for json objects and for parsing from json

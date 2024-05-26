@@ -9,13 +9,8 @@
 #include <string>
 #include <thread>
 
-#ifdef WIN32
-#include <thread>
-#else
-// version that uses local jthread instance, in case not yet available in <thread> in C++20 mode (e.g. clang++)
-// #include "jthread/source/jthread.hpp"
+// conditionally include, if not yet available in compiler in c++23 mode
 #include "jthread.hpp"
-#endif
 
 #include "hd/hd_keypress.hpp"
 
@@ -35,8 +30,7 @@ void waitingForWork(std::stop_token stk)
     condVar.wait(lck, [] { return dataReady; });
     fmt::print("id: {}, running. Data = {}\n", fmt::streamed(my_id), data);
 
-    while (!stk.stop_requested())
-    {
+    while (!stk.stop_requested()) {
         fmt::print("id: {}, idle waiting for stop.\n", fmt::streamed(my_id));
         std::this_thread::sleep_for(200ms);
     }
@@ -50,15 +44,15 @@ void setDataReady(std::stop_token stk)
 {
     std::thread::id my_id = std::this_thread::get_id();
     data = "data made ready for use";
-    fmt::print("id: {}, data prepared. Released for use by workers.\n", fmt::streamed(my_id));
+    fmt::print("id: {}, data prepared. Released for use by workers.\n",
+               fmt::streamed(my_id));
     {
         std::lock_guard<std::mutex> lck(mtx);
         dataReady = true;
     }
     condVar.notify_all();
 
-    while (!stk.stop_requested())
-    {
+    while (!stk.stop_requested()) {
         fmt::print("id: {}, idle waiting for stop.\n", fmt::streamed(my_id));
         std::this_thread::sleep_for(200ms);
     }
