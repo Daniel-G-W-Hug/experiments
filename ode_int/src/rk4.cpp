@@ -56,7 +56,7 @@ void rk4_step(mdspan<double, dextents<size_t, 1>> u,
             }
             break;
 
-        case 3: // predictor 2: mitpoint rule to t + dt
+        case 3: // predictor 2: midpoint rule to t + dt
             for (size_t i = 1; i < n; ++i) {
                 u[i] = uh[0, i] + rk4 * rhs[i];
                 uh[1, i] += rk2 * rhs[i];
