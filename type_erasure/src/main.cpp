@@ -15,17 +15,23 @@
 // // type erasure (non-intrusive)
 // ////////////////////////////////////////////////////////////
 
-// struct TypeErased_unique // not templated, but using templated ctors and virtual calls to internal representation
+// struct TypeErased_unique // not templated, but using templated ctors and virtual calls
+// to internal representation
 
 // // to use in other applications:
 // // - text replace TypeErased_unique by intended common type
-// // - adjust pure virtuals in TE_Interface with functions needed as common interface (pure virtuals)
-// // - adjust "standard affordances" (cp, mv, destruct) if required (normally not necessary)
-// // - forward calls of all functions in interface (vitual functions) to TE_Storage via impl_ptr
+// // - adjust pure virtuals in TE_Interface with functions needed as common interface
+// (pure virtuals)
+// // - adjust "standard affordances" (cp, mv, destruct) if required (normally not
+// necessary)
+// // - forward calls of all functions in interface (vitual functions) to TE_Storage via
+// impl_ptr
 // //   (redirection to TE_Storage happens via vtable, i.e. by virtual function calls)
-// //   (in case of pure data types only keep virtual standard functions and delete the rest)
+// //   (in case of pure data types only keep virtual standard functions and delete the
+// rest)
 // //
-// //   TypeErased_unique can be used with full value semantics, i.e. as elements of collection in all standard containers
+// //   TypeErased_unique can be used with full value semantics, i.e. as elements of
+// collection in all standard containers
 
 // {
 
@@ -70,7 +76,8 @@
 //         virtual ~TE_Interface() = default;
 
 //         // add other required function of common interface as pure virtual here
-//         // i.e. all the required functions of the common interfaces (e.g. serialization, deserialization, etc.)
+//         // i.e. all the required functions of the common interfaces (e.g.
+//         serialization, deserialization, etc.)
 
 //         virtual std::string make_noise() const = 0;
 //         virtual int id() const = 0;
@@ -85,7 +92,8 @@
 //         TE_Storage(const T& obj) :
 //             m_obj{obj} {}
 
-//         // use the function calls of the common interface provided by the concrete types
+//         // use the function calls of the common interface provided by the concrete
+//         types
 
 //         std::string make_noise() const override { return m_obj.make_noise(); }
 //         int id() const override { return m_obj.id(); }
@@ -100,17 +108,23 @@
 //     std::unique_ptr<TE_Interface> impl_ptr{nullptr};
 // };
 
-// struct TypeErased_shared // not templated, but using templated ctors and virtual calls to internal representation
+// struct TypeErased_shared // not templated, but using templated ctors and virtual calls
+// to internal representation
 
 // // to use in other applications:
 // // - text replace TypeErased_shared by intended common type
-// // - adjust pure virtuals in TE_Interface with functions needed as common interface (pure virtuals)
-// // - adjust "standard affordances" (cp, mv, destruct) if required (normally not necessary)
-// // - forward calls of all functions in interface (vitual functions) to TE_Storage via impl_ptr
+// // - adjust pure virtuals in TE_Interface with functions needed as common interface
+// (pure virtuals)
+// // - adjust "standard affordances" (cp, mv, destruct) if required (normally not
+// necessary)
+// // - forward calls of all functions in interface (vitual functions) to TE_Storage via
+// impl_ptr
 // //   (redirection to TE_Storage happens via vtable, i.e. by virtual function calls)
-// //   (in case of pure data types only keep virtual standard functions and delete the rest)
+// //   (in case of pure data types only keep virtual standard functions and delete the
+// rest)
 // //
-// //   TypeErased_shared can be used with full value semantics, i.e. as elements of collection in all standard containers
+// //   TypeErased_shared can be used with full value semantics, i.e. as elements of
+// collection in all standard containers
 
 // {
 
@@ -159,7 +173,8 @@
 //         virtual std::shared_ptr<TE_Interface> clone() const = 0;
 
 //         // add other required function of common interface as pure virtual here
-//         // i.e. all the required functions of the common interfaces (e.g. serialization, deserialization, etc.)
+//         // i.e. all the required functions of the common interfaces (e.g.
+//         serialization, deserialization, etc.)
 
 //         virtual std::string make_noise() const = 0;
 //         virtual int id() const = 0;
@@ -181,8 +196,8 @@
 //             return std::make_shared<TE_Storage<T>>(m_obj);
 //         }
 
-//         // use the function calls of the common interface provided by the concrete types
-//         std::string make_noise() const override { return m_obj.make_noise(); }
+//         // use the function calls of the common interface provided by the concrete
+//         types std::string make_noise() const override { return m_obj.make_noise(); }
 //         int id() const override { return m_obj.id(); }
 
 //       private:
@@ -195,7 +210,8 @@
 //     std::shared_ptr<const TE_Interface> impl_ptr{nullptr};
 // };
 
-int main(int argc, char* argv[])
+// int main(int argc, char* argv[])
+int main()
 {
 
     // demo using classical inheritance

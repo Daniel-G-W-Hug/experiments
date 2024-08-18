@@ -3,7 +3,8 @@
 #include "hd/hd_error.hpp"
 #include "hd/hd_keypress.hpp"
 
-int main(int argc, char* argv[])
+// int main(int argc, char* argv[])
+int main()
 {
     std::cout << "Test error handling options.\n\n";
 

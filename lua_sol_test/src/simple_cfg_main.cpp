@@ -68,12 +68,12 @@ int main()
     sol::table vec_table = lua["vec"];
     std::vector<int> v(vec_table.size());
 
-    for (int i = 0; i < v.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) {
         v[i] = lua["vec"][i + 1];
     }
     fmt::println("v: {}", fmt::join(v, ", "));
 
-    for (int i = 0; i < v.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) {
         lua["vec"][i + 1] = v[i] * 2;
     }
 

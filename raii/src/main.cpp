@@ -9,13 +9,12 @@
 // create a litte wrapper class around a raw array to realize raii
 // RAII: Resource Aquisition is initialization
 
-template <typename T>
-class DynamicArray
-{
+template <typename T> class DynamicArray {
     size_t m_size{0};
-    T *m_array{nullptr};
+    T* m_array{nullptr};
 
   public:
+
     DynamicArray(size_t size) : m_size{size}, m_array{size > 0 ? new T[size] : nullptr}
     {
         // if (m_array != nullptr)
@@ -27,8 +26,7 @@ class DynamicArray
 
     ~DynamicArray()
     {
-        if (m_size > 0)
-        {
+        if (m_size > 0) {
             // fmt::print("About to delete array of {} elements.\n", m_size);
             delete[] m_array;
         }
@@ -43,13 +41,11 @@ class DynamicArray
 
     T get(size_t idx) { return m_array[idx]; }
 
-    T &operator[](size_t idx)
-    {
-        return m_array[idx];
-    }
+    T& operator[](size_t idx) { return m_array[idx]; }
 };
 
-int main(int argc, char *argv[])
+// int main(int argc, char *argv[])
+int main()
 {
     fmt::print("\nStart RAII demo.\n\n");
 
@@ -60,8 +56,7 @@ int main(int argc, char *argv[])
         ia.set(4, 42.2);
         ia[DIM - 1] = 9.99999;
 
-        for (size_t cnt = 0; cnt < ia.size(); ++cnt)
-        {
+        for (size_t cnt = 0; cnt < ia.size(); ++cnt) {
             fmt::print("ia[{}] = {}\n", cnt, ia[cnt]);
         }
     }

@@ -4,19 +4,13 @@
 #include "mdspan/mdspan.hpp"
 
 // make mdspan less verbose
-using Kokkos::dextents;
-using Kokkos::dynamic_extent;
-using Kokkos::extents;
-using Kokkos::layout_left;
-using Kokkos::layout_right;
-using Kokkos::mdspan;
+using namespace Kokkos;
 
 // finite difference space discritization of linear advection-diffusion-equation
 //
 // computation for all terms of rhs incl. du/dx, d2u/dx2 and source term
 
-namespace hd
-{
+namespace hd {
 
 ////////////////////////////////////////////////////////////////////////////
 // FD-O2        i = 0:           i = [1,n-2]:     i = n-1:
@@ -29,17 +23,17 @@ namespace hd
 ////////////////////////////////////////////////////////////////////////////
 
 // initialize coefficients (must be called once before use of fd_dfdx)
-void fd_dfdx_init(mdspan<double const, dextents<int, 1>> x,
-                  mdspan<double, dextents<int, 1>> a0_f1,
-                  mdspan<double, dextents<int, 1>> b0_f1,
-                  mdspan<double, dextents<int, 1>> c0_f1);
+void fd_dfdx_init(mdspan<double const, dextents<size_t, 1>> x,
+                  mdspan<double, dextents<size_t, 1>> a0_f1,
+                  mdspan<double, dextents<size_t, 1>> b0_f1,
+                  mdspan<double, dextents<size_t, 1>> c0_f1);
 
 // returns dudx for u(x_i) (call fd_dfdx_init beforehand!)
-void fd_dfdx(mdspan<double const, dextents<int, 1>> a0_f1,
-             mdspan<double const, dextents<int, 1>> b0_f1,
-             mdspan<double const, dextents<int, 1>> c0_f1,
-             mdspan<double const, dextents<int, 1>> u,
-             mdspan<double, dextents<int, 1>> dudx);
+void fd_dfdx(mdspan<double const, dextents<size_t, 1>> a0_f1,
+             mdspan<double const, dextents<size_t, 1>> b0_f1,
+             mdspan<double const, dextents<size_t, 1>> c0_f1,
+             mdspan<double const, dextents<size_t, 1>> u,
+             mdspan<double, dextents<size_t, 1>> dudx);
 
 ////////////////////////////////////////////////////////////////////////////
 // FD-O2        i = 0:           i = [1,n-2]:     i = n-1:
@@ -52,17 +46,17 @@ void fd_dfdx(mdspan<double const, dextents<int, 1>> a0_f1,
 ////////////////////////////////////////////////////////////////////////////
 
 // initialize coefficients (must be called once before use of fd_dfdx)
-void fd_d2fdx2_init(mdspan<double const, dextents<int, 1>> x,
-                    mdspan<double, dextents<int, 1>> a0_f2,
-                    mdspan<double, dextents<int, 1>> b0_f2,
-                    mdspan<double, dextents<int, 1>> c0_f2);
+void fd_d2fdx2_init(mdspan<double const, dextents<size_t, 1>> x,
+                    mdspan<double, dextents<size_t, 1>> a0_f2,
+                    mdspan<double, dextents<size_t, 1>> b0_f2,
+                    mdspan<double, dextents<size_t, 1>> c0_f2);
 
 // returns d2udx2 for u(x_i) (call fd_dfdx_init beforehand!)
-void fd_d2fdx2(mdspan<double const, dextents<int, 1>> a0_f2,
-               mdspan<double const, dextents<int, 1>> b0_f2,
-               mdspan<double const, dextents<int, 1>> c0_f2,
-               mdspan<double const, dextents<int, 1>> u,
-               mdspan<double, dextents<int, 1>> d2udx2);
+void fd_d2fdx2(mdspan<double const, dextents<size_t, 1>> a0_f2,
+               mdspan<double const, dextents<size_t, 1>> b0_f2,
+               mdspan<double const, dextents<size_t, 1>> c0_f2,
+               mdspan<double const, dextents<size_t, 1>> u,
+               mdspan<double, dextents<size_t, 1>> d2udx2);
 
 } // namespace hd
 

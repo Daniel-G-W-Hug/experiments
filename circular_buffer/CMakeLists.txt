@@ -15,5 +15,5 @@ target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../includ
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt-header-only)
 
-find_package(Boost REQUIRED)
+find_package(Boost CONFIG REQUIRED)
 target_link_libraries(${EXEC_NAME} PRIVATE Boost::boost)

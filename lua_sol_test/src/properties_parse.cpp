@@ -54,7 +54,7 @@ circle parse_circle(sol::state& lua)
 std::vector<circle> parse_circle_seq(sol::state& lua)
 {
     std::vector<circle> v(sol::table(lua["circle_seq"]).size());
-    for (int i = 0; i < v.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) {
         v[i].name = lua["circle_seq"][i + 1]["name"];
         v[i].pos.x = lua["circle_seq"][i + 1]["position"]["x"];
         v[i].pos.y = lua["circle_seq"][i + 1]["position"]["y"];
@@ -87,7 +87,7 @@ rectangle parse_rectangle(sol::state& lua)
 std::vector<rectangle> parse_rectangle_seq(sol::state& lua)
 {
     std::vector<rectangle> v(sol::table(lua["rectangle_seq"]).size());
-    for (int i = 0; i < v.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) {
         v[i].name = lua["rectangle_seq"][i + 1]["name"];
         v[i].pos.x = lua["rectangle_seq"][i + 1]["position"]["x"];
         v[i].pos.y = lua["rectangle_seq"][i + 1]["position"]["y"];

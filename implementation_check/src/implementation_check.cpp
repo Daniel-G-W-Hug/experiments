@@ -292,10 +292,10 @@ int main()
         cout << "(because unsigned is the common type)\n";
 
         Number<unsigned int> ui1 = {1}, ui2 = {2};
-        Number<short int> si1 = {1}, si2 = {2};
+        Number<short int> si1 = {1};
         Number<int> i1 = {1}, i2 = {-2};
         Number<long> li1 = {1}, li2 = {2};
-        Number<float> f1 = {2.3f}, f2 = {3.5f};
+        Number<float> f1 = {2.3f};
         Number<double> d1 = {2.3}, d2 = {3.5};
         describe("ui1 + i2", ui1 + i2);
         describe("i1 + ui2", i1 + ui2);

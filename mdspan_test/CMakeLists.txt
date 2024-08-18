@@ -15,5 +15,7 @@ target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)
 target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../include)
 target_include_directories(${EXEC_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/../../include/mdspan/include)
 
+target_compile_definitions(${EXEC_NAME} PUBLIC MDSPAN_USE_BRACKET_OPERATOR=1 MDSPAN_CXX_STANDARD=23)
+
 find_package(fmt CONFIG REQUIRED)
 target_link_libraries(${EXEC_NAME} PRIVATE fmt::fmt-header-only)

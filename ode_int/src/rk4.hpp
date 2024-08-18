@@ -18,23 +18,16 @@
 #include "mdspan/mdspan.hpp"
 
 // make mdspan less verbose
-using Kokkos::dextents;
-using Kokkos::dynamic_extent;
-using Kokkos::extents;
-using Kokkos::layout_left;
-using Kokkos::layout_right;
-using Kokkos::mdspan;
+using namespace Kokkos;
 
-namespace hd
-{
+namespace hd {
 
-double get_time_rkstep(double ti, double dt, int rk);
+double get_time_rkstep(double ti, double dt, size_t rk);
 
-void rk4_step(mdspan<double, dextents<int, 1>> u,
-              mdspan<double, dextents<int, 2>> uh,
-              mdspan<double const, dextents<int, 1>> rhs,
-              double const dt,
-              int const rk_step);
+void rk4_step(mdspan<double, dextents<size_t, 1>> u,
+              mdspan<double, dextents<size_t, 2>> uh,
+              mdspan<double const, dextents<size_t, 1>> rhs, double const dt,
+              size_t rk_step);
 
 } // namespace hd
 

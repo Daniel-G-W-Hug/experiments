@@ -2,7 +2,8 @@
 
 #include "hd/hd_keypress.hpp"
 
-auto main(int argc, char* argv[]) -> int
+// auto main(int argc, char* argv[]) -> int
+auto main() -> int
 {
     std::cout << "Hello World!\n";
 
