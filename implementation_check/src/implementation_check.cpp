@@ -10,8 +10,10 @@
 #include <iostream>
 #include <limits.h>
 #include <limits>
+#include <ratio> // std::ratio
 #include <string>
 #include <thread>
+
 
 #include "common_type.hpp"
 #include "hd/hd_keypress.hpp"

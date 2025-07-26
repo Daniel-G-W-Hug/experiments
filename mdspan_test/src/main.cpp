@@ -5,9 +5,12 @@
 #include "fmt/format.h"
 #include "fmt/ranges.h"
 
+#include <cmath>   // std::sin, std::cos
+#include <numbers> // std::numbers::pi
+
 #include "hd/hd_keypress.hpp"
 
-void solve_system()
+void solve_system1()
 {
 
     // storage for matrix, rhs & permutation
@@ -38,6 +41,72 @@ void solve_system()
     fmt::print("\n");
 }
 
+void solve_system2()
+{
+    using std::numbers::pi;
+
+    // storage for matrix, rhs & permutation
+    const double phi = pi / 6.0; // 30°
+    double sphi = std::sin(phi);
+    double cphi = std::cos(phi);
+
+
+    std::array m_s{cphi, -sphi, sphi, cphi};
+    std::array rhs_1{1., 0.};
+    std::array rhs_2{0., 1.};
+    std::array<int, 2> m_perm;
+
+    // setup the corresponding mdarray views onto the data
+    auto m = mdspan<double, extents<size_t, 2, 2>>(m_s.data());
+    auto rhs1 = mdspan<double, extents<size_t, 2>>(rhs_1.data());
+    auto rhs2 = mdspan<double, extents<size_t, 2>>(rhs_2.data());
+    auto mperm = mdspan<int, extents<size_t, 2>>(m_perm.data());
+
+    for (size_t i = 0; i < m.extent(0); ++i) {
+        for (size_t j = 0; j < m.extent(1); ++j) {
+            fmt::print("m({},{}) == {}, ", i, j, m[i, j]);
+        }
+        fmt::print("\n");
+    }
+
+    for (size_t i = 0; i < m.extent(0); ++i)
+        fmt::print("rhs1({}) == {},", i, rhs1[i]);
+    for (size_t i = 0; i < m.extent(0); ++i)
+        fmt::print("rhs2({}) == {},", i, rhs2[i]);
+    fmt::print("\n\n");
+
+    // LU decomposition of matrix
+    hd::lu_decomp(m, mperm);
+
+    // solution by backsubstition of rhs1 => solution is returned in rhs1
+    hd::lu_backsubs(m, mperm, rhs1);
+
+    for (size_t i = 0; i < m.extent(0); ++i) {
+        for (size_t j = 0; j < m.extent(1); ++j) {
+            fmt::print("m({},{}) == {}, ", i, j, m[i, j]);
+        }
+        fmt::print("\n");
+    }
+
+    for (size_t i = 0; i < m.extent(0); ++i)
+        fmt::print("rhs1({}) == {},", i, rhs1[i]);
+    fmt::print("\n\n");
+
+    // solution by backsubstition of rhs2 => solution is returned in rhs2
+    hd::lu_backsubs(m, mperm, rhs2);
+
+    for (size_t i = 0; i < m.extent(0); ++i) {
+        for (size_t j = 0; j < m.extent(1); ++j) {
+            fmt::print("m({},{}) == {}, ", i, j, m[i, j]);
+        }
+        fmt::print("\n");
+    }
+
+    for (size_t i = 0; i < m.extent(0); ++i)
+        fmt::print("rhs2({}) == {},", i, rhs2[i]);
+    fmt::print("\n");
+}
+
 void func(mdspan<int, dextents<size_t, 2>> s)
 {
 
@@ -58,9 +127,10 @@ int main()
 
     double buffer[3 * 4] = {1.0,  2.0,  3.0,  4.0,  6.0,  8.0,
                             10.0, 12.0, 24.0, 48.0, 72.0, 96.0};
-    auto fd = mdspan<double, extents<size_t, 3, 4>>(buffer);
+    // auto fd = mdspan<double, extents<size_t, 3, 4>>(buffer);
 
     fmt::print("fd = {}\n\n", buffer);
+    // fmt::print("fd = {}\n\n", fd);
 
     fmt::print("d2 = {}\n\n", d2);
 
@@ -86,7 +156,7 @@ int main()
 
     fmt::print("d2 = {}\n\n", d2);
 
-    solve_system();
+    solve_system1();
 
     for (size_t i = 0; i < 53; ++i) {
         fmt::print("fact({}) = {}\n", i, hd::fact(i));
@@ -136,6 +206,8 @@ int main()
     catch (std::exception const& e) {
         std::cout << e.what();
     }
+
+    solve_system2();
 
     hd::cmdl_wait_for_enter();
 

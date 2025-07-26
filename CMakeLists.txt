@@ -26,13 +26,7 @@
 #]]
 #[[ hint: backet comment will not be formated by cmake-format]]
 
-cmake_minimum_required(VERSION 3.29)
-
-# to use gcc-13 and g++-13 instead of default c / c++ (must come before project
-# line [[
-# set(CMAKE_C_COMPILER "gcc-13")
-# set(CMAKE_CXX_COMPILER "g++-13")
-# ]]
+cmake_minimum_required(VERSION 3.30)
 
 #
 # for trial of new features, libs or system values"
@@ -44,7 +38,8 @@ project(
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED YES)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 
 # set a default build type: Debug | RelWithDebInfo | Release | MinSizeRel
 if(NOT CMAKE_BUILD_TYPE)
@@ -77,7 +72,7 @@ add_subdirectory(mdspan_test)             # dep: fmt, mdspan
 add_subdirectory(ode_int)                 # dep: fmt, vtk
 
 # "condition_var" does work in clang++ only with local jthread instance
-add_subdirectory(condition_var)           # dep: fmt, josuttis-jthread
+#add_subdirectory(condition_var)           # dep: fmt, josuttis-jthread
 
 # "type_erasure" works on clang++, but not on g++-12 on MACOS (Linker error)
 add_subdirectory(type_erasure)            # dep: fmt
@@ -105,6 +100,8 @@ add_subdirectory(ctor_dtor)
 
 add_subdirectory(variadic_test)            # dep: fmt
 
-add_subdirectory(lua_sol_test)             # dep: fmt, sol2
+#add_subdirectory(lua_sol_test)             # dep: fmt, sol2
 
 add_subdirectory(lua_cpp_book)             # dep: fmt, penlight (via luarocks)
+
+add_subdirectory(module_test)              # not working as of 07/25
